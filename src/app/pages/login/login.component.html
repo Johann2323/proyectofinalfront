@@ -1,34 +1,31 @@
-<div class = "bootstrap-wrapper">
-  <div class = "container">
-    <div class = "row mt20">
-      <div class = "col-md-6 offset-md-3">
-        <mat-card>
-          <div class = "container text-center">
-            <img src="../../../assets/login.png" width = "100" height = "100">
-          </div>
+<header class="text-center" style="font-size:45px;"> <strong>Inicio Sesión</strong></header>
 
-          <h1 class = "text-center">Inicio de sesión</h1>
-          <form (ngSubmit) = "formSubmit()">
-            <mat-form-field class = "full-width"  appearance = "outline">
-              <mat-label>Nombre de usuario</mat-label>
-              <input [(ngModel)] = "loginData.username" name = "username" required  matInput placeholder="Digite su nombre de usuario">
-              <mat-hint>El nombre de usuario debe ser valido</mat-hint>
-            </mat-form-field>
-            <mat-form-field class="full-width"  appearance = "outline">
-              <mat-label>Contraseña</mat-label>
-              <input [(ngModel)] = "loginData.password" name = "password" required  type="password" matInput placeholder="Digite su contraseña">
-              <mat-hint>La contraseña debe ser valida</mat-hint>
-            </mat-form-field>
-
-            <br><br>
-
-            <div class = "container text-center">
-              <button type = "submit" mat-raised-button color="primary">Iniciar sesión</button>
-              <button type="reset" style = "margin-left: 20px;" mat-raised-button color="accent">Limpiar</button>
-            </div>
-          </form>
-        </mat-card>
-      </div>
+<body class="elemento" ba>
+  <form ngNativeValidate (ngSubmit) = "formSubmit()" style="text-align:center ;" method="post">
+    <div class="mb-3">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/2698/2698175.png"
+        width=150 height=150><br><br>
+      <label for="exampleInputEmail1" class="destacado form-label">
+        <font size="4">Usuario:</font>
+      </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input [(ngModel)] = "loginData.username" #email class="text-center" id="txtcorreo" type="text" size="55"
+        placeholder="Escriba su usuario" required>
     </div>
-  </div>
-</div>
+    
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="destacado form-label">
+        <font size="4">Contraseña:</font>
+      </label>&nbsp;&nbsp;&nbsp;
+      <input #contra [(ngModel)] = "loginData.password" type="password" id="txtcontra" class="text-center" size="55" required>
+    </div>
+    <button type="submit" class="boton btn " style="background-color:#BE6134 ;">Ingresar</button><br><br>
+    <label for="" style="color:#2E2F5E ;" routerLink="/app-signup"><u>Registrate aquí</u></label>
+    
+    
+    
+  </form>
+  
+  
+</body>
+

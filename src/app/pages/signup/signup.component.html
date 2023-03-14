@@ -1,3 +1,54 @@
+<div class="container">
+  <div class="card" style="width: 40rem; background-color: #F6D4C4;">
+      <div class="card-body">
+        <h5 class="card-title" style="text-align: center;">Bienvenido</h5>
+        <p class="card-title" style="text-align: center;">Aquí puedes registrarte</p><br>
+        <form  ngNativeValidate (ngSubmit)="formSubmit()">
+          <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Cédula</label>
+            <div class="col-sm-10">
+              <input type="number" #cedula class="form-control" name="cedula" placeholder="Escribe tu cédula"  required>
+            </div><br><br><br>
+          </div>
+          <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Nombres</label>
+            <div class="col-sm-10">
+              <input type="text " #nombre class="form-control"  pattern="[a-zA-Z ]*" name="nombre" placeholder="Escribe tu nombre"  required>
+            </div><br><br><br>
+          </div>
+          <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Dirección</label>
+            <div class="col-sm-10">
+              <input type="text"  #direccion class="form-control"  name="direccion" placeholder="Escribe tu dirección" required>
+            </div><br><br><br>
+          </div>
+          <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+              <input type="text"  class="form-control" id="staticEmail"  name="correo" placeholder="Escribe tu correo" required>
+            </div><br><br><br>
+          </div>
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Contraseña</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" #contra1 id="contra1"   name="clave" placeholder="Ingresa tu contraseña" required>
+            </div>
+          </div><br>
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Confirmar contraseña</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" #contra2 id="contra2" placeholder="Escribe nuevamente tu contraseña" required>
+            </div>
+          </div>
+          <button type="submit" class="boton btn-primary ">Registrarse</button>
+        </form><br><br>
+        
+      </div>
+    </div>
+</div>
+
+
+
 <div class = "bootstrap-wrapper">
   <div class = "container">
     <div class = "row" style = "margin-top : 20px;">
