@@ -1,15 +1,36 @@
-<mat-toolbar color="primary">
-  <a
-    [routerLink]="'/'"
-    mat-icon-button
-    class="example-icon"
-    arial-label="Example icon-button with menu icon"
-  >
-    <mat-icon>menu_books</mat-icon>
-  </a>
-  <span>Portal de exámenes</span>
-  <span class="example-spacer"></span>
-  <a
+<nav class="navbar navbar-expand-lg " style="background-color: #F6DDCC ">
+  <div class="container-fluid">
+   
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand" href="#" style="color: #030100" > <img
+          src="https://cdn-icons-png.flaticon.com/512/2802/2802838.png"
+          alt="" width="60" height="60" routerLink="/app-pagina-inicio"> ReadMore</a>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <a class="nav-link active" aria-current="page" href="#" routerLink="/app-categorias">Categorias</a>
+       
+      </ul>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#" routerLink="/app-registro-libro">Registro Libro</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#" routerLink="/app-registro-admin">Registro Vendedor</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#" routerLink="/app-stock">Inventariado</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#" routerLink="/app-eventos">Eventos</a>
+        </li>
+      </ul>
+    </div>
+    <a
     *ngIf = "!isLoggedIn"
     [routerLink]="'/login'"
     mat-icon-button
@@ -46,4 +67,6 @@
   >
     {{ user.username }}
   </button>
-</mat-toolbar>
+  </div>
+</nav>
+

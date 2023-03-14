@@ -1,0 +1,32 @@
+<div>
+  <h3>Hístorico</h3>
+  <br>
+  <form class="d-flex buscar" role="search">
+    <input class="form-control me-1" type="search" placeholder="Buscar" aria-label="Buscar"
+      style=" border-color: #F1D9CE; height:40px;" />
+    <button class="btn" type="submit">
+      <img src="https://cdn-icons-png.flaticon.com/512/3686/3686871.png" style="width: 40px; height: 40px;">
+    </button>
+  </form><br>
+  <div *ngFor="let libro of libros1">
+    <div *ngIf="libro.categoria === 'historico'">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card" style="width: 18rem;">
+            <img src="{{libro.imagenget}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ libro.titulo }}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{ libro.autor }}</li>
+              <li class="list-group-item">{{ libro.precio }}</li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">Añadir al carrito</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
