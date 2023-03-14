@@ -22,12 +22,14 @@ import {MatIconModule} from '@angular/material/icon';
 import { authInterceptorProviders } from './services/auth.interceptor';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
+import { RegistroLibroComponent } from './pages/registro-libro/registro-libro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     SignupComponent,
+    RegistroLibroComponent,
     LoginComponent,
     HomeComponent,
     DashboardComponent,

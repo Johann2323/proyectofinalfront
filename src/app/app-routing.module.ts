@@ -7,11 +7,18 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { libros } from './pages/registro-libro/libros';
+import { RegistroLibroComponent } from './pages/registro-libro/registro-libro.component';
 
 const routes: Routes = [
   {
     path : '',
     component : HomeComponent,
+    pathMatch : 'full'
+  },
+  {
+    path : 'registro-libro',
+    component : RegistroLibroComponent,
     pathMatch : 'full'
   },
   {
