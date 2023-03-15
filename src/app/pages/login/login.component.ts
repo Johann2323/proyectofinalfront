@@ -2,6 +2,8 @@ import { Router } from '@angular/router';
 import { LoginService } from './../../services/login.service';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-login',
@@ -22,16 +24,31 @@ export class LoginComponent implements OnInit {
 
   formSubmit(){
     if(this.loginData.username.trim() == '' || this.loginData.username.trim() == null){
-      this.snack.open('El nombre de usuario es requerido !!','Aceptar',{
-        duration:3000
-      })
+      
+      
+
+      Swal.fire({
+        title: "El usuario es requerido!!",
+        icon: "warning",
+        confirmButtonText: "Aceptar",
+        timer: 2000,
+        timerProgressBar: true,
+        toast: true,
+        position: "center",
+      });
       return;
     }
 
     if(this.loginData.password.trim() == '' || this.loginData.password.trim() == null){
-      this.snack.open('La contraseña es requerida !!','Aceptar',{
-        duration:3000
-      })
+      Swal.fire({
+        title: "La contraseña es requerida!!",
+        icon: "warning",
+        confirmButtonText: "Aceptar",
+        timer: 2000,
+        timerProgressBar: true,
+        toast: true,
+        position: "center",
+      });
       return;
     }
 
@@ -50,9 +67,22 @@ export class LoginComponent implements OnInit {
             this.loginService.loginStatusSubjec.next(true);
           }
           else if(this.loginService.getUserRole() == 'NORMAL'){
+            
             //user dashboard
             //window.location.href = '/user-dashboard';
             this.router.navigate(['user-dashboard']);
+            Swal.fire({
+              title: "¡Bienvenido de nuevo! "+this.loginData.username,
+              text: "Has iniciado sesión correctamente.",
+              icon: "success",
+              confirmButtonText: "Continuar",
+              confirmButtonColor: "#3085d6",
+              
+              timer: 5000,
+              timerProgressBar: true,
+              toast: true,
+              position: "center",
+            });
             this.loginService.loginStatusSubjec.next(true);
           }
           else{
@@ -61,9 +91,16 @@ export class LoginComponent implements OnInit {
         })
       },(error) => {
         console.log(error);
-        this.snack.open('Detalles inválidos , vuelva a intentar !!','Aceptar',{
-          duration:3000
-        })
+        Swal.fire({
+          title: "El usuario no existe!!",
+          icon: "warning",
+          confirmButtonText: "Aceptar",
+          timer: 2000,
+          timerProgressBar: true,
+          toast: true,
+          position: "center",
+        });
+        return;
       }
     )
   }
