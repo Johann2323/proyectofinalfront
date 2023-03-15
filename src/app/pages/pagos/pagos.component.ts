@@ -12,4 +12,9 @@ export class PagosComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  enviarMensaje() {
+    alert("¡Pago enviado con éxito!");
+
+  }
+
 }

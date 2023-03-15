@@ -1,1 +1,68 @@
-<p>pagos works!</p>
+<div class="container text-center">
+    <img src="https://cdn-icons-png.flaticon.com/512/1019/1019607.png" width="100" height="100">
+  </div>
+  
+  <strong>
+  <div class="container text-center">
+    <form class="p-2">
+      <div class="form-group col-md-2-center">
+        <label for="payment-type">Tipo de pago</label>
+        <select id="payment-type" class="form-control" required>
+          <option value="">Seleccione el pago</option>
+          <option value="credit-card">Credit Card</option>
+          <option value="debit-card">Debit Card</option>
+          <option value="paypal">Paypal</option>
+          <option value="apple-pay">Apple Pay</option>
+        </select>
+      </div>
+  
+      <div class="form-group col-md-2-center">
+        <label for="card-number">Numero de Card</label>
+        <input type="text" id="card-number" class="form-control" placeholder="Ingrese numero de Card" required>
+      </div>
+  
+      <div class="form-row justify-content-center">
+        <div class="form-group col-md-2-center">
+          <label for="expiry-month">Mes de Expiracion</label>
+          <select id="expiry-month" class="form-control" required>
+            <option value="">Seleccione Mes</option>
+            <option value="01">Enero</option>
+            <option value="02">Febrero</option>
+            <option value="03">Marzo</option>
+            <option value="04">Abril</option>
+            <option value="05">Mayo</option>
+            <option value="06">Junio</option>
+            <option value="07">Julio</option>
+            <option value="08">Agosto</option>
+            <option value="09">Septiembre</option>
+            <option value="10">Octobre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+          </select>
+        </div>
+  
+        <div class="form-group col-md-2-center">
+          <label for="expiry-year">Año de Expiracion</label>
+          <select id="expiry-year" class="form-control" required>
+            <option value="">Seleccione Año</option>
+            <option value="2022">2023</option>
+            <option value="2023">2024</option>
+            <option value="2024">2025</option>
+            <option value="2025">2026</option>
+          </select>
+        </div>
+      </div>
+  
+      <div class="form-group col-md-2-center">
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" class="form-control" placeholder="Ingrese CVV" required>
+      </div>
+  
+      <button type="submit" class="boton btn-primary">Payment</button>
+  
+      
+  
+    </form>
+  </div>
+  </strong>
+  
