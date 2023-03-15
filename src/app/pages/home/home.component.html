@@ -1,36 +1,25 @@
 <div  class="elemento">
   <h3>Novedades</h3>
   <br>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="card" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Libro</h5>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Descripción del libro</li>
-            <li class="list-group-item">Precio</li>
-          </ul>
-          <div class="card-body">
-            <a href="#" class="card-link">Añadir al carrito</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Libro</h5>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Descripción del libro</li>
-            <li class="list-group-item">Precio</li>
-          </ul>
-          <div class="card-body">
-            <a href="#" class="card-link">Añadir al carrito</a>
+  <div *ngFor="let libro of libros1">
+    <div *ngIf="isFechaUltimoMes(libro.fechacreacion+'')">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card" style="width: 18rem;">
+            <img src="{{libro.imagenget}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ libro.titulo }}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{ libro.autor }}</li>
+              <li class="list-group-item">{{ libro.precio }}</li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">Añadir al carrito</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </div>
