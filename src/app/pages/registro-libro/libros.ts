@@ -3,11 +3,13 @@ export class libros{
     titulo?: string;
     autor?: string;
     editorial?: string;
-    categoria?: string;
-    imagenURL?: string;
-    imagenPhat?: string;
-    imagenpost?:string;
-    imagenget?:string;
     precio?: number;
     stock?: number;
+    descripcion?:string;
+    categoria?: string;
+    imagenPhat?: string;
+    imagenURL?: string;
+    imagenpost?:string;
+    imagenget?:string;
+    fechacreacion?: Date; 
 }
