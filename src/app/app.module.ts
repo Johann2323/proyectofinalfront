@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { RegistroAdminComponent } from './pages/registro-admin/registro-admin.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -67,6 +68,7 @@ import { PagosComponent } from './pages/pagos/pagos.component';
       {path: 'app-cat-historico', component: CatHistoricoComponent},
       {path: 'app-registro-libro', component: RegistroLibroComponent},
       {path: 'app-pagos', component: PagosComponent},
+      {path: 'app-registro-admin', component: RegistroAdminComponent},
       {path: 'app-eventos', component: EventosComponent},
       {path: 'app-carrito-compras', component: CarritoComprasComponent},
       {path: 'app-stock', component: StockComponent},
