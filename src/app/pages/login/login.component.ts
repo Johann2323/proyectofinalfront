@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
               confirmButtonText: "Continuar",
               confirmButtonColor: "#3085d6",
               
-              timer: 5000,
+              timer: 2000,
               timerProgressBar: true,
               toast: true,
               position: "center",

@@ -7,27 +7,27 @@
             <a class="navbar-brand" href="#" style="color: #030100" > <img
                 src="https://cdn-icons-png.flaticon.com/512/2802/2802838.png"
                 alt="" width="60" height="60" routerLink="/app-pagina-inicio"> ReadMore</a>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf = "isLoggedIn">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#" routerLink="/app-categorias">Categorias</a>
               </li>
             </ul>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf = "isLoggedIn">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#" routerLink="/app-registro-libro">Registro Libro</a>
               </li>
             </ul>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf = "isLoggedIn">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#" routerLink="/app-registro-admin">Registro Vendedor</a>
               </li>
             </ul>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf = "isLoggedIn">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#" routerLink="/app-stock">Inventariado</a>
               </li>
             </ul>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf = "isLoggedIn">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#" routerLink="/app-eventos">Eventos</a>
               </li>

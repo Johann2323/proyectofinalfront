@@ -19,6 +19,7 @@ export class RegistroLibroService {
   
 
   create(libro: libros): Observable<libros> {
+    return this.http.post<libros>(this.urlendpoint, libro, {headers: this.httpHeaders})
 
     const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
     const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
@@ -26,16 +27,30 @@ export class RegistroLibroService {
     
     return this.http.post<libros>(this.urlendpoint, libro, { headers: this.httpHeaders })
   }
+  
   obtenerLibro(nombre: String): Observable<libros[]> {
-    return this.http.get<libros[]>(this.urlendpoint1);
+    const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
+    const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
+
+    
+    
+    return this.http.get<libros[]>(this.urlendpoint1,{ headers: this.httpHeaders });
   }
   getLibros(): Observable <libros[]>{
-    return this.http.get<libros[]>(this.urlendpoint2);
+    const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
+    const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
+
+    
+    
+    
+    return this.http.get<libros[]>(this.urlendpoint2,{ headers: this.httpHeaders });
   }
 
-  buscarLibro (nombre:String)
-  :Observable<libros[]>{
+  buscarLibro (nombre:String):Observable<libros[]>{
+
+    const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
+    const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
     let res=this.urlBuscarLibro+'/'+nombre;
-    return this.http.get<libros[]>(res);
+    return this.http.get<libros[]>(res,{ headers: this.httpHeaders });
   }
 }

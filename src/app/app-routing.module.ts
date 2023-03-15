@@ -17,9 +17,10 @@ const routes: Routes = [
     pathMatch : 'full'
   },
   {
-    path : 'registro-libro',
+    path : 'app-registro-libro',
     component : RegistroLibroComponent,
-    pathMatch : 'full'
+    pathMatch : 'full',
+    canActivate:[NormalGuard]
   },
   {
     path : 'signup',
@@ -29,7 +30,8 @@ const routes: Routes = [
   {
     path : 'login',
     component : LoginComponent,
-    pathMatch : 'full'
+    pathMatch : 'full',
+    
   },
   {
     path:'admin',

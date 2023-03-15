@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; // Importar FormsModule
 import Swal from 'sweetalert2';
 import { DomSanitizer } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-registro-libro',
@@ -28,7 +29,7 @@ export class RegistroLibroComponent implements OnInit {
   bus: boolean = true;
   buscarval: boolean = false;
   public previsualizacion?: string;
-  constructor(private sanitizer: DomSanitizer,private libroservice: RegistroLibroService, private router: Router) { }
+  constructor(private sanitizer: DomSanitizer,private libroservice: RegistroLibroService, private router: Router,private http: HttpClient) { }
   @ViewChild('titulo') titulo!: ElementRef;
   @ViewChild('autor') autor!: ElementRef;
   @ViewChild('editorial') editorial!: ElementRef;
@@ -36,6 +37,8 @@ export class RegistroLibroComponent implements OnInit {
   @ViewChild('stock') stock!: ElementRef;
   @ViewChild('categoriaSelec') categoriaSelect!: ElementRef;
 
+
+  
   ngOnInit(): void {
     this.libroservice.getLibros().subscribe(
       libro => this.libros1 = libro,
@@ -75,6 +78,10 @@ export class RegistroLibroComponent implements OnInit {
 
   }
 
+  
+
+  
+
   buscarLibxNomb(nombre: String) {
     this.bus = false;
     this.libroservice.buscarLibro(nombre).subscribe(
@@ -85,13 +92,21 @@ export class RegistroLibroComponent implements OnInit {
       }
     )
   }
+  public archivocapturado?:any
 
   capturarImagen(event: any): any {
-    const archivocapturado = event.target.files[0]
-    this.extraerBase64(archivocapturado).then((imagen: any) => {
-      this.previsualizacion = imagen.base;
-    })
+    const archivocapturado = <File>event.target.files[0]
     
+  }
+
+
+  uploadFile() {
+    const fd = new FormData();
+    fd.append('pdf', this.archivocapturado, this.archivocapturado.name);
+    this.http.post('http://localhost:8080/api/assets/upload', fd)
+      .subscribe(response => {
+        console.log(response);
+      });
   }
   extraerBase64 = async ($event: any) => new Promise((resolve, reject) => {
     try {
@@ -115,5 +130,10 @@ export class RegistroLibroComponent implements OnInit {
       console.log("Error al Subir Imagen")
     }
   })
+
+
+
+
+  
 
 }
