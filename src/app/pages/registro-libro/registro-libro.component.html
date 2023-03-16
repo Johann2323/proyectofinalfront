@@ -41,10 +41,7 @@
 
               
             <div class="form-group row">
-
-              <input type="file" id="subir" name="PDF" [(ngModel)] = "libros.imagenPhat" (change)="capturarImagen($event)">
-              
-              
+              <input type="file" [(ngModel)] = "libros.imagenPhat" (change)="onFileSelected($event)">
             </div>
 
 

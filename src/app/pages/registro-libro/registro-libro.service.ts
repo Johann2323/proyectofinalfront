@@ -7,6 +7,7 @@ import {HttpClient, HttpHeaders } from '@angular/common/http'
   providedIn: 'root'
 })
 export class RegistroLibroService {
+  public libros: libros = new libros();
   private urlendpoint: string = 'http://localhost:8080/api/crearlibro';
   private urlendpoint1: string = 'http://localhost:8080/api/listarlibros';
   private urlendpoint2: string = 'http://localhost:8080/api/cursos/getlibros';
@@ -19,7 +20,7 @@ export class RegistroLibroService {
   
 
   create(libro: libros): Observable<libros> {
-    
+    return this.http.post<libros>(this.urlendpoint, libro, {headers: this.httpHeaders})
 
     const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
     const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
@@ -52,5 +53,9 @@ export class RegistroLibroService {
     const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
     let res=this.urlBuscarLibro+'/'+nombre;
     return this.http.get<libros[]>(res,{ headers: this.httpHeaders });
+  }
+
+  uploadFile(file: File) {
+    
   }
 }

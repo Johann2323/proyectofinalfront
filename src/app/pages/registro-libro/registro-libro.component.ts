@@ -23,7 +23,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./registro-libro.component.css']
 })
 export class RegistroLibroComponent implements OnInit {
-  archivocapturado?:any;
+  archivocapturado:any;
   public libros: libros = new libros();
   libros1: libros[] = [];
   libs: libros[]=[];
@@ -96,7 +96,7 @@ export class RegistroLibroComponent implements OnInit {
   
 
   capturarImagen(event: any) {
-    const archivocapturado = <File>event.target.files[0]
+    const archivocapturado = event.target.files[0]
     console.log(archivocapturado)
     const fd = new FormData();
     fd.append('pdf', this.archivocapturado, this.archivocapturado.name);
@@ -108,9 +108,24 @@ export class RegistroLibroComponent implements OnInit {
   }
 
 
-  uploadFile(archivo:File) {
+  onFileSelected(event:any) {
+    const file: File = event.target.files[0];
     
+
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+    console.log("Entreee")
+    this.http.post('http://localhost:8080/api/assets/upload', formData)
+      .subscribe((res:any) => {
+        console.log(res);
+        console.log(res.url)
+        this.libros.imagenURL=res.url
+        
+        
+        
+      });
   }
+
   extraerBase64 = async ($event: any) => new Promise((resolve, reject) => {
     try {
       const unsafeImg = window.URL.createObjectURL($event);
