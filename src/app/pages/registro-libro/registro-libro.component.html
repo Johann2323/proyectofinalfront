@@ -5,50 +5,52 @@
         <div class="card-body ">
             <h5 style="text-align: center;">Formulario del Libro</h5><br>
           <form>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="subir" accept="image/*"  (change)="capturarImagen($event)" (ngModel)="libros.imagenPhat"  type="file"  name="Image"><br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="subir" accept="image/*"  (change)="capturarImagen($event)" (ngModel)="libros.imagenPhat"  type="file" ><br><br>
             <div class="form-group row">
                 <label for="staticEmail" class="col-sm-3 col-form-label">Título</label>
                 <div class="col-sm-9">
-                  <input type="text" [(ngModel)] = "libros.titulo" class="form-control" #titulo  placeholder="Escribe el título del libro" required>
+                  <input type="text" [(ngModel)] = "libros.titulo" class="form-control" #titulo [ngModelOptions]="{standalone: true}"  placeholder="Escribe el título del libro" required>
                 </div><br><br><br>
             </div>
             <div class="form-group row">
                 <label for="staticEmail" class="col-sm-3 col-form-label">Autor</label>
                 <div class="col-sm-9">
-                  <input type="text" [(ngModel)] = "libros.autor" class="form-control" #autor placeholder="Escribe el autor del libro" required>
+                  <input type="text" [(ngModel)] = "libros.autor" class="form-control" [ngModelOptions]="{standalone: true}"  #autor placeholder="Escribe el autor del libro" required>
                 </div><br><br><br>
               </div>
               <div class="form-group row">
                 <label for="staticEmail" class="col-sm-3 col-form-label">Editorial</label>
                 <div class="col-sm-9">
-                  <input type="text" [(ngModel)] = "libros.editorial" class="form-control" #editorial placeholder="Escribe la editorial al que pertenece" required>
+                  <input type="text" [(ngModel)] = "libros.editorial" class="form-control" [ngModelOptions]="{standalone: true}"  #editorial placeholder="Escribe la editorial al que pertenece" required>
                 </div><br><br><br>
               </div>
 
               <div class="form-group row">
                 <label for="staticEmail" class="col-sm-3 col-form-label">Descripcion</label>
                 <div class="col-sm-9">
-                  <input type="text" [(ngModel)] = "libros.descripcion" class="form-control" #descripcion placeholder="Escriba una descripcion corta" required>
+                  <input type="text" [(ngModel)] = "libros.descripcion" class="form-control" [ngModelOptions]="{standalone: true}"  #descripcion placeholder="Escriba una descripcion corta" required>
                 </div><br><br><br>
               </div>
 
               <div class="form-group row">
                 <label for="staticEmail" class="col-sm-3 col-form-label">Fecha de creacion</label>
                 <div class="col-sm-9">
-                  <input type="datetime-local" [(ngModel)] = "libros.fechacreacion" class="form-control" #fecha  required>
+                  <input type="datetime-local" [(ngModel)] = "libros.fechacreacion" [ngModelOptions]="{standalone: true}"  class="form-control" #fecha  required>
                 </div><br><br><br>
               </div>
 
               
             <div class="form-group row">
-              <input type="file" [(ngModel)] = "libros.imagenPhat" (change)="onFileSelected($event)">
+
+              <input type="file" [(ngModel)] = "libros.imagenPhat"  (change)="onFileSelected($event)">
+              
             </div>
 
 
               <div class="form-group row">
                 <label for="staticEmail" class="col-sm-3 col-form-label">Categoria</label>
                 <div class="col-sm-9">
-                    <select  class="form-control"  style="width: 200px; height: 40px;  border-radius: 5px; border-color:darkgray;" name= "categoriaSelec" #categoriaSelec id="inputGroupSelect01" required>
+                    <select  class="form-control"  style="width: 200px; height: 40px;  border-radius: 5px; border-color:darkgray;" #categoriaSelec id="inputGroupSelect01" required>
                         <option disabled selected hidden>Elija una opción</option>
                         <option value="fantasia">Fantasía</option>
                         <option value="suspenso">Suspenso</option>
@@ -62,13 +64,13 @@
                 <div class="form-group row">
                   <label for="staticEmail"  class="col-sm-3 col-form-label">Precio</label>
                   <div class="col-sm-9">
-                    <input type="number" #precio class="form-control" [(ngModel)] = "libros.precio" placeholder="Escribe el precio del libro" required>
+                    <input type="number" #precio class="form-control" [(ngModel)] = "libros.precio" [ngModelOptions]="{standalone: true}"  placeholder="Escribe el precio del libro" required>
                   </div><br><br><br>
                 </div>
                 <div class="form-group row">
                   <label for="staticEmail" class="col-sm-3 col-form-label">Stock</label>
                   <div class="col-sm-9">
-                    <input type="number"  #stock  class="form-control" [(ngModel)] = "libros.stock" placeholder="Escribe el número de libros disponibles" required>
+                    <input type="number"  #stock  class="form-control" [(ngModel)] = "libros.stock" [ngModelOptions]="{standalone: true}"  placeholder="Escribe el número de libros disponibles" required>
                   </div><br><br><br>
                 </div>
           </form>

@@ -3,26 +3,27 @@
     <div class = "row mt20">
       <div class = "col-md-6 offset-md-3">
         <mat-card>
+          <h1 class = "text-center">Inicio de sesión</h1>
           <div class = "container text-center">
             <img  src="https://cdn-icons-png.flaticon.com/512/2698/2698175.png" width = "100" height = "100">
           </div>
 
-          <h1 class = "text-center">Inicio de sesión</h1>
+          
           <form ngNativeValidate (ngSubmit) = "formSubmit()">
             <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Nombre de Usuario</label>
+              <label for="exampleInputEmail1" class="form-label" ><strong>Nombre de Usuario:</strong></label>
               <input [(ngModel)] = "loginData.username" name = "username" required placeholder="Digite su nombre de usuario" type="text" class="form-control" >
-              <div id="emailHelp" class="form-text">El nombre de usuario debe ser valido</div>
+              <div id="emailHelp" style="font-size: small; color: #EAB095 ;" class="form-text">El nombre de usuario debe ser valido</div>
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+              <label for="exampleInputPassword1" class="form-label"><strong>Contraseña:</strong></label>
               <input type="password" class="form-control" [(ngModel)] = "loginData.password" name = "password" required matInput placeholder="Digite su contraseña">
-              <div class="form-text">La contraseña debe ser valida</div>
+              <div class="form-text" style="font-size: small; color: #EAB095 ;">La contraseña debe ser valida</div>
             </div>
             
             <div class = "container text-center">
-              <button type = "submit" class="btn btn-outline-primary">Iniciar sesión</button>
-              <button type="reset" style = "margin-left: 20px;" class="btn btn-outline-warning">Limpiar</button>
+              <button type = "submit" class="boton btn " style="margin-right: 50px; background-color:#BE6134; font-size: small; color: white;"><strong>Iniciar sesión</strong></button>
+              <button type="reset" class="boton btn " style="margin-left: 20px; background-color:#BE6134; font-size: small; color: white;"><strong>Limpiar</strong></button>
     
             </div>
           </form>

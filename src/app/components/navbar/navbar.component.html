@@ -42,20 +42,16 @@
 
     </div>
     <div>
-      <a *ngIf="!isLoggedIn" [routerLink]="'/login'" mat-icon-button class="example-icon favorite-icon"
-        aria-label="Example icon-button with heart icon">
+      <a *ngIf="!isLoggedIn" [routerLink]="'/login'" class="boton btn " style="background-color:#BE6134; font-size: small; color: white;">
         Iniciar sesión
-      </a>
-      <a *ngIf="!isLoggedIn" [routerLink]="'/signup'" mat-icon-button class="example-icon favorite-icon mr20 ml70"
-        aria-label="Example icon-button with heart icon">
+      </a>&nbsp; &nbsp; &nbsp; &nbsp; 
+      <a *ngIf="!isLoggedIn" [routerLink]="'/signup'" class="boton btn " style="margin-right: 30px; background-color:#BE6134; font-size: small; color: white;" >
         Registrar
       </a>
-      <a *ngIf="isLoggedIn" (click)="logout()" style="margin-right: 50px" mat-icon-button
-        class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <a *ngIf="isLoggedIn" (click)="logout()" class="boton btn " style="margin-right: 50px; background-color:#BE6134; font-size: small; color: white;">
         Cerrar sesión
-      </a>
-      <button *ngIf="isLoggedIn && user" mat-button style="margin-right: 10px" class="example-icon favorite-icon"
-        aria-label="Example icon-button with heart icon">
+      </a>&nbsp; &nbsp; &nbsp; &nbsp; 
+      <button *ngIf="isLoggedIn && user" class="boton btn " style="margin-right: 10px; background-color:#BE6134; font-size: small; color: white;">
         {{ user.username }}
       </button>
     </div>
