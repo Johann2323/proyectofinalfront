@@ -12,6 +12,7 @@ import { RegistroLibroComponent } from './pages/registro-libro/registro-libro.co
 import { PagosComponent } from './pages/pagos/pagos.component';
 import { StockComponent } from './pages/stock/stock.component';
 import { RegistroAdminComponent } from './pages/registro-admin/registro-admin.component';
+import { CarritoComprasComponent } from './pages/carrito-compras/carrito-compras.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,13 @@ const routes: Routes = [
   {
     path : 'app-stock',
     component : StockComponent,
+    pathMatch : 'full',
+    canActivate:[NormalGuard]
+  },
+
+  {
+    path : 'app-carrito-compras',
+    component : CarritoComprasComponent,
     pathMatch : 'full',
     canActivate:[NormalGuard]
   },

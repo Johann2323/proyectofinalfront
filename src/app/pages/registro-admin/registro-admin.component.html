@@ -5,11 +5,11 @@
             <div class="card-body ">
                 <h5 class="card-title" style="text-align: center;">Registro de Vendedores</h5>
           <p class="card-title" style="text-align: center;">Aquí puedes registrar un nuevo compañero</p><br>
-          <form (ngSubmit)="create( contra1.value , contra2.value)">
+          <form (ngSubmit)="formSubmit( contra1.value , contra2.value)">
             <div class="form-group row">
-              <label for="staticEmail" class="col-sm-3 col-form-label">Cédula</label>
+              <label for="staticEmail" class="col-sm-3 col-form-label">Username</label>
               <div class="col-sm-9">
-                <input type="text"  class="form-control"   name="cedula" placeholder="Escriba la cédeula" required>
+                <input type="text " [(ngModel)] = "user.username" #nombre class="form-control"  pattern="[a-zA-Z ]*" name="nombre" placeholder="Escribe tu usuario"  required>
               </div><br><br><br>
             </div>
             <div class="form-group row">

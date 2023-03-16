@@ -14,4 +14,8 @@ export class UserService {
       return this.httpClient.post(`${baserUrl}/usuarios/`,user);
     }
 
+    public añadirUsuarioadmin(user:any){
+      return this.httpClient.post(`${baserUrl}/usuarios/admin`,user);
+    }
+
 }
