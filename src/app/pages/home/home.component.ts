@@ -17,13 +17,13 @@ export class HomeComponent implements OnInit {
   public libros: libros = new libros();
   libros1: libros[] = [];
   constructor(private libroservice: RegistroLibroService, private router: Router) { }
-
   ngOnInit(): void {
     this.libroservice.getLibros().subscribe(
       libro => this.libros1 = libro
       //libro => this.libros=libro
     );
   }
+  
   showCarrito() {
     this.currentComponent = 'carrito';
   }
