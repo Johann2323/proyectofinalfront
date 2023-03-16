@@ -42,8 +42,8 @@
               
             <div class="form-group row">
 
-              <input type="file" id="subir" name="PDF" [(ngModel)] = "libros.imagenPhat" accept="file/*"  (change)="capturarImagen($event)">
-              <button type="button" className="btn btn-outline-primary" variant="success" onclick="uploadFile()" ></button>&nbsp;&nbsp;&nbsp;
+              <input type="file" id="subir" name="PDF" [(ngModel)] = "libros.imagenPhat" (change)="capturarImagen($event)">
+              
               
             </div>
 
