@@ -11,3 +11,25 @@
     transform: translateX(-50%);
   }
   
+  input[type="file"] {
+  display: none;
+}
+  .custom-file-upload {
+    display: inline-block;
+    background-color: #F1D9CE;
+    color: #000000;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  
+  .custom-file-upload:hover {
+    background-color: #dfdbd9;
+  }
+  
+  .custom-file-upload i {
+    margin-right: 5px;
+  }
+  .h4{
+    font-size: small;
+  }

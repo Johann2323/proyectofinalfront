@@ -50,3 +50,5 @@ body {
 .ml70{
   margin-left: 70px !important;
 }
+
+@import '~@fortawesome/fontawesome-free/css/all.css';

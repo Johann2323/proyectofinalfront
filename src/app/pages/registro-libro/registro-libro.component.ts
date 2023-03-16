@@ -30,6 +30,10 @@ export class RegistroLibroComponent implements OnInit {
   bus: boolean = true;
   buscarval: boolean = false;
   public previsualizacion?: string;
+  fileName?: string;
+  fileContent: any;
+  fileNameimg: any;
+  fileContentimg: any;
   constructor(private sanitizer: DomSanitizer,private libroservice: RegistroLibroService, private router: Router,private http: HttpClient) { }
   @ViewChild('titulo') titulo!: ElementRef;
   @ViewChild('autor') autor!: ElementRef;
@@ -37,7 +41,10 @@ export class RegistroLibroComponent implements OnInit {
   @ViewChild('precio') precio!: ElementRef;
   @ViewChild('stock') stock!: ElementRef;
   @ViewChild('categoriaSelec') categoriaSelect!: ElementRef;
-
+  @ViewChild('descripcion') descripcion!: ElementRef;
+  @ViewChild('fecha') fecha!: ElementRef;
+  @ViewChild('pdf') pdf!: ElementRef;
+  @ViewChild('imagen') imagen!: ElementRef;
 
   
   ngOnInit(): void {
@@ -48,12 +55,48 @@ export class RegistroLibroComponent implements OnInit {
     );
     this.buscarval = false;
     this.bus = true;
+
+    
   }
 
   onKeydownEvent(event: KeyboardEvent, titulo: String): void {
     if (titulo == "") {
       this.ngOnInit();
     }
+  }
+
+  crearlibros(libro:any){
+     
+    this.libros.titulo=this.titulo.nativeElement.value
+    
+    this.libros.autor=this.autor.nativeElement.value
+
+    this.libros.editorial=this.editorial.nativeElement.value
+
+    this.libros.precio=this.precio.nativeElement.value
+
+    this.libros.stock=this.stock.nativeElement.value
+    
+    this.libros.descripcion=this.descripcion.nativeElement.value
+    
+    this.libros.imagenpost=this.imagen.nativeElement.value
+    
+    this.libros.imagenPhat=this.pdf.nativeElement.value
+    
+    this.libros.categoria=this.categoriaSelect.nativeElement.value
+
+    console.log(libro.titulo,libro.autor, libro.editorial,libro.precio,libro.stock,libro.descripcion,libro.imagenpost, libro.imagenPhat,libro.categoria)
+
+    this.libroservice.create(this.libros).subscribe(
+      (data) => {
+        console.log(data);
+        Swal.fire('Usuario guardado', 'Usuario registrado con exito en el sistema', 'success');
+      }, (error) => {
+        console.log(error);
+        Swal.fire('Error', 'Usuario no registrado', 'error');
+      }
+    )
+
   }
   editar(libro:any){
     this.titulo.nativeElement.value = libro.titulo;
@@ -97,29 +140,53 @@ export class RegistroLibroComponent implements OnInit {
 
   capturarImagen(event: any) {
     const archivocapturado = event.target.files[0]
-    console.log(archivocapturado)
-    const fd = new FormData();
-    fd.append('pdf', this.archivocapturado, this.archivocapturado.name);
-    this.http.post('http://localhost:8080/api/assets/upload', fd)
-      .subscribe(response => {
-        console.log(response);
-      });
     
+    
+    if (archivocapturado) {
+      this.fileNameimg = archivocapturado.name;
+      const reader: FileReader = new FileReader();
+      reader.onload = (e: any) => {
+        this.fileContentimg = e.target.result;
+      };
+      reader.readAsText(archivocapturado);
+    }
+    
+
+    const formData: FormData = new FormData();
+    formData.append('file', archivocapturado, archivocapturado.name);
+    console.log("Entreee")
+    this.http.post('http://localhost:8080/api/assets/upload', formData )
+      .subscribe((res:any) => {
+        console.log(res);
+        console.log(res.url)
+        this.libros.imagenget=res.url
+        
+        
+        
+      });
   }
 
 
   onFileSelected(event:any) {
     const file: File = event.target.files[0];
     
-
+    if (file) {
+      this.fileName = file.name;
+      const reader: FileReader = new FileReader();
+      reader.onload = (e: any) => {
+        this.fileContent = e.target.result;
+      };
+      reader.readAsText(file);
+    }
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);
     console.log("Entreee")
     this.http.post('http://localhost:8080/api/assets/upload', formData)
       .subscribe((res:any) => {
         console.log(res);
-        console.log(res.url)
-        this.libros.imagenURL=res.url
+        console.log(res.data.url)
+        this.libros.imagenURL=res.data.url
+        console.log(this.libros.imagenURL)
         
         
         

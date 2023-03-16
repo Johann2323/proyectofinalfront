@@ -1,11 +1,22 @@
+
 <div class="contenedor">
 <div class="row">
     <div class="col-sm-4">
       <div class="card"  >
         <div class="card-body ">
             <h5 style="text-align: center;">Formulario del Libro</h5><br>
-          <form>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="subir" accept="image/*"  (change)="capturarImagen($event)" (ngModel)="libros.imagenPhat"  type="file" ><br><br>
+          <form ngNativeValidate  (ngSubmit)="crearlibros(libros)">
+            
+            <hr>
+            <div class="form-group row">
+              <label style="text-align: center;" for="fileInputimg" class="custom-file-upload">
+                <i class="fas fa-image"></i> Seleccionar Imagen
+              </label>
+              <input id="fileInputimg" type="file" [(ngModel)] = "libros.imagenpost" accept="image/*" #imagen name="sub"   (change)="capturarImagen($event)" >
+              <div *ngIf="fileContentimg">
+                <h4>{{ fileNameimg }}</h4>
+              </div>
+            </div><hr>
             <div class="form-group row">
                 <label for="staticEmail" class="col-sm-3 col-form-label">Título</label>
                 <div class="col-sm-9">
@@ -36,15 +47,19 @@
                 <label for="staticEmail" class="col-sm-3 col-form-label">Fecha de creacion</label>
                 <div class="col-sm-9">
                   <input type="datetime-local" [(ngModel)] = "libros.fechacreacion" [ngModelOptions]="{standalone: true}"  class="form-control" #fecha  required>
-                </div><br><br><br>
+                </div>
               </div>
-
-              
+            <hr>  
             <div class="form-group row">
-
-              <input type="file" [(ngModel)] = "libros.imagenPhat" name="imagenPhat"  (change)="onFileSelected($event)">
+              <label style="text-align: center;" for="fileInput" class="custom-file-upload" aria-required="true">
+                <i class="fas fa-file-pdf"></i> Seleccionar PDF
+              </label>
+              <input id="fileInput" type="file" [(ngModel)] = "libros.imagenPhat" #pdf (change)="onFileSelected($event)" title="Seleccione un archivo" >
+              <div *ngIf="fileContent">
+                <h4>{{ fileName }}</h4>
+              </div>
               
-            </div><br>
+            </div><hr>
 
 
               <div class="form-group row">
@@ -73,8 +88,10 @@
                     <input type="number"  #stock  class="form-control" [(ngModel)] = "libros.stock" [ngModelOptions]="{standalone: true}"  placeholder="Escribe el número de libros disponibles" required>
                   </div><br><br><br>
                 </div>
+
+                <button type="submit" id="guardar" class="boton btn-primary ">Crear</button>
           </form>
-          <button type="submit" class="boton btn-primary ">Registrarse</button>
+          
         </div>
       </div>
     </div>

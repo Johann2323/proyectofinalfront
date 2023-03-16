@@ -1,61 +1,60 @@
 import { Injectable } from '@angular/core';
 import { libros } from './libros';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { LoginService } from './../../services/login.service';
-import {HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 @Injectable({
   providedIn: 'root'
 })
 export class RegistroLibroService {
   public libros: libros = new libros();
-  private urlendpoint: string = 'http://localhost:8080/api/crearlibro';
+  private urlendpoint: string = 'http://localhost:8080/api/cursos/crearlibro';
   private urlendpoint1: string = 'http://localhost:8080/api/listarlibros';
   private urlendpoint2: string = 'http://localhost:8080/api/cursos/getlibros';
-  private urlBuscarLibro: string ='http://localhost:8080/api/cursos/buscarxnombre';
-  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
+  private urlBuscarLibro: string = 'http://localhost:8080/api/cursos/buscarxnombre';
+
 
   
 
   constructor(private http: HttpClient, private loginService: LoginService) { }
-  
+
+ 
+
+
 
   create(libro: libros): Observable<libros> {
-    return this.http.post<libros>(this.urlendpoint, libro, {headers: this.httpHeaders})
-
-    const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
-    const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
-
-    
-    return this.http.post<libros>(this.urlendpoint, libro, { headers: this.httpHeaders })
+    const token = this.loginService.getToken(); // Obtener el token del localStorage
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<libros>(this.urlendpoint, libro, { headers });
   }
-  
+
   obtenerLibro(nombre: String): Observable<libros[]> {
     const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
     const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
 
-    
-    
-    return this.http.get<libros[]>(this.urlendpoint1,{ headers: this.httpHeaders });
+
+
+    return this.http.get<libros[]>(this.urlendpoint1, { headers: httpHeaders });
   }
-  getLibros(): Observable <libros[]>{
+  getLibros(): Observable<libros[]> {
     const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
     const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
 
-    
-    
-    
-    return this.http.get<libros[]>(this.urlendpoint2,{ headers: this.httpHeaders });
+
+
+
+    return this.http.get<libros[]>(this.urlendpoint2, { headers: httpHeaders });
   }
 
-  buscarLibro (nombre:String):Observable<libros[]>{
+  buscarLibro(nombre: String): Observable<libros[]> {
 
     const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
     const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
-    let res=this.urlBuscarLibro+'/'+nombre;
-    return this.http.get<libros[]>(res,{ headers: this.httpHeaders });
+    let res = this.urlBuscarLibro + '/' + nombre;
+    return this.http.get<libros[]>(res, { headers: httpHeaders });
   }
 
   uploadFile(file: File) {
-    
+
   }
 }
