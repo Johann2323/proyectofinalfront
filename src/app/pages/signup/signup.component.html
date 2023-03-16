@@ -1,15 +1,14 @@
-<header class="text-center" style="font-size:45px;"> <strong>Inicio Sesión</strong></header><br><br>
 
-<div class="container">
+<div class="contenedor">
   <div class="card" style="text-align:center; width: 40rem; background-color: #F6D4C4;">
       <div class="card-body">
         <h5 class="card-title" style="text-align: center;">Bienvenido</h5>
         <p class="card-title" style="text-align: center;">Aquí puedes registrarte</p><br>
-        <form (ngSubmit) = "formSubmit()">
+        <form (ngSubmit) = "formSubmit(contra1.value, contra2.value)">
           <div class="form-group row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Usuario</label>
             <div class="col-sm-10">
-              <input type="text " [(ngModel)] = "user.username" #nombre class="form-control"  pattern="[a-zA-Z ]*" name="nombre" placeholder="Escribe tu nombre"  required>
+              <input type="text " [(ngModel)] = "user.username" #nombre class="form-control"  pattern="[a-zA-Z ]*" name="nombre" placeholder="Escribe tu usuario"  required>
             </div><br><br><br>
           </div>
           <div class="form-group row">
@@ -21,7 +20,7 @@
           <div class="form-group row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Apellidos</label>
             <div class="col-sm-10">
-              <input type="text"  #direccion [(ngModel)] = "user.apellido" class="form-control"  name="direccion" placeholder="Escribe tu dirección" required>
+              <input type="text"  #direccion [(ngModel)] = "user.apellido" class="form-control"  name="direccion" placeholder="Escribe tus apellidos" required>
             </div><br><br><br>
           </div>
           <div class="form-group row">
@@ -33,7 +32,7 @@
           <div class="form-group row">
             <label for="staticEmail" class="col-sm-2 col-form-label">Telefono</label>
             <div class="col-sm-10">
-              <input type="text"  #direccion class="form-control"  [(ngModel)] = "user.telefono" name="direccion" placeholder="Escribe tu dirección" required>
+              <input type="number"  #direccion class="form-control"  [(ngModel)] = "user.telefono" name="direccion" placeholder="Escribe tu telefono" required>
             </div><br><br><br>
           </div>
           <div class="form-group row">
@@ -54,8 +53,8 @@
               <input type="password" class="form-control" #contra2 id="contra2" placeholder="Escribe nuevamente tu contraseña" required>
             </div>
           </div>
-          <button type="submit" class="boton btn-primary ">Registrarse</button>
-        </form><br><br>
+          <button type="submit" class="boton btn " style="background-color:#BE6134; font-size: small;">Registrarse</button>
+        </form><br>
         
       </div>
     </div>
