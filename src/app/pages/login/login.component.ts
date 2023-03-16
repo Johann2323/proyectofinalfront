@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
             
             //user dashboard
             //window.location.href = '/user-dashboard';
-            this.router.navigate(['user-dashboard']);
+            this.router.navigate(['']);
             Swal.fire({
               title: "¡Bienvenido de nuevo! "+this.loginData.username,
               text: "Has iniciado sesión correctamente.",

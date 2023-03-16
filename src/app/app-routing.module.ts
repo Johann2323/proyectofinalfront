@@ -9,6 +9,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { libros } from './pages/registro-libro/libros';
 import { RegistroLibroComponent } from './pages/registro-libro/registro-libro.component';
+import { PagosComponent } from './pages/pagos/pagos.component';
+import { StockComponent } from './pages/stock/stock.component';
+import { RegistroAdminComponent } from './pages/registro-admin/registro-admin.component';
 
 const routes: Routes = [
   {
@@ -16,6 +19,32 @@ const routes: Routes = [
     component : HomeComponent,
     pathMatch : 'full'
   },
+  {
+    path : 'app-stock',
+    component : StockComponent,
+    pathMatch : 'full',
+    canActivate:[NormalGuard]
+  },
+  {
+    path : 'app-pagos',
+    component : PagosComponent,
+    pathMatch : 'full',
+    canActivate:[NormalGuard]
+  },
+  {
+    path : 'app-stock',
+    component : StockComponent,
+    pathMatch : 'full',
+    canActivate:[NormalGuard]
+  },
+  {
+    path : 'app-registro-admin',
+    component : RegistroAdminComponent,
+    pathMatch : 'full',
+    canActivate:[NormalGuard]
+  },
+  
+  
   {
     path : 'app-registro-libro',
     component : RegistroLibroComponent,
