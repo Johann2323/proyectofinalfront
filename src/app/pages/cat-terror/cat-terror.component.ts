@@ -15,14 +15,28 @@ import Swal from 'sweetalert2';
 export class CatTerrorComponent implements OnInit {
   public libros: libros = new libros();
   libros1: libros[] = [];
+  libs: libros[]=[];
+  bus: boolean = true;
+  buscarval: boolean = false;
   constructor(private libroservice: RegistroLibroService, private router: Router) { }
 
   ngOnInit(): void {
     this.libroservice.getLibros().subscribe(
       libro => this.libros1 = libro
-      //libro => this.libros=libro
     );
+    this.buscarval = false;
+    this.bus = true;
   }
 
+  buscarLibxNomb(nombre: String) {
+    this.bus = false;
+    this.libroservice.buscarLibro(nombre).subscribe(
+      librs => {
+        this.libs = librs;
+        console.log(this.libs.length);
+        this.buscarval = true;
+      }
+    )
+  }
 
 }

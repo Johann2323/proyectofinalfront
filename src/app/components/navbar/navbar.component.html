@@ -15,28 +15,23 @@
       </ul>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#" routerLink="/app-categorias">Categorias</a>
+          <a class="nav-link active" *ngIf=cliente||admin aria-current="page" href="#" routerLink="/app-categorias">Categorias</a>
         </li>
       </ul>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#" routerLink="/app-registro-libro">Registro Libro</a>
+          <a class="nav-link active" *ngIf=admin aria-current="page" href="#" routerLink="/app-registro-libro">Registro Libro</a>
         </li>
       </ul>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#" routerLink="/app-registro-admin">Registro Vendedor</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#" routerLink="/app-stock">Inventariado</a>
+          <a class="nav-link active" *ngIf=admin aria-current="page" href="#" routerLink="/app-registro-admin">Registro Vendedor</a>
         </li>
       </ul>
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#" routerLink="/app-pagos">Pagos</a>
+          <a class="nav-link active" *ngIf=admin  aria-current="page" href="#" routerLink="/app-pagos">Pagos</a>
         </li>
       </ul>
 
@@ -48,7 +43,7 @@
       <a *ngIf="!isLoggedIn" [routerLink]="'/signup'" class="boton btn " style="margin-right: 30px; background-color:#BE6134; font-size: small; color: white;" >
         Registrar
       </a>
-      <a *ngIf="isLoggedIn" (click)="logout()" class="boton btn " style="margin-right: 50px; background-color:#BE6134; font-size: small; color: white;">
+      <a *ngIf=isLoggedIn (click)="logout()" class="boton btn " style="margin-right: 50px; background-color:#BE6134; font-size: small; color: white;">
         Cerrar sesión
       </a>&nbsp; &nbsp; &nbsp; &nbsp; 
       <button *ngIf="isLoggedIn && user" class="boton btn " style="margin-right: 10px; background-color:#BE6134; font-size: small; color: white;">
