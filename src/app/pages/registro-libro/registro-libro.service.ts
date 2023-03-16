@@ -19,7 +19,7 @@ export class RegistroLibroService {
   
 
   create(libro: libros): Observable<libros> {
-    
+    return this.http.post<libros>(this.urlendpoint, libro, {headers: this.httpHeaders})
 
     const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
     const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
