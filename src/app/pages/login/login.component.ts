@@ -63,14 +63,26 @@ export class LoginComponent implements OnInit {
           if(this.loginService.getUserRole() == 'ADMIN'){
             //dashboard admin
             //window.location.href = '/admin';
-            this.router.navigate(['admin']);
+            this.router.navigate(['/']);
+            Swal.fire({
+              title: "¡Bienvenido de nuevo! "+this.loginData.username,
+              text: "Has iniciado sesión correctamente.",
+              icon: "success",
+              confirmButtonText: "Continuar",
+              confirmButtonColor: "#3085d6",
+              
+              timer: 2000,
+              timerProgressBar: true,
+              toast: true,
+              position: "center",
+            });
             this.loginService.loginStatusSubjec.next(true);
           }
           else if(this.loginService.getUserRole() == 'NORMAL'){
             
             //user dashboard
             //window.location.href = '/user-dashboard';
-            this.router.navigate(['']);
+            this.router.navigate(['/']);
             Swal.fire({
               title: "¡Bienvenido de nuevo! "+this.loginData.username,
               text: "Has iniciado sesión correctamente.",

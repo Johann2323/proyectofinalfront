@@ -22,8 +22,9 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  /*ngDoCheck(): void {
+  ngDoCheck(): void {
     this.rol = this.login.getUserRole();
+    console.log(this.rol)
     if (this.rol == null) {
       this.sinuser = true;
       this.cliente = false;
@@ -39,12 +40,12 @@ export class NavbarComponent implements OnInit {
       this.cliente = false;
       this.admin = true;
     }
-  }*/
+  }
 
   public logout() {
     this.login.logout();
+    this.router.navigate(['/app-login']);
     window.location.reload();
-    this.router.navigate(['/app-home']);
   }
 
 }
