@@ -79,9 +79,7 @@ export class RegistroLibroComponent implements OnInit {
     
     this.libros.descripcion=this.descripcion.nativeElement.value
     
-    this.libros.imagenpost=this.imagen.nativeElement.value
     
-    this.libros.imagenPhat=this.pdf.nativeElement.value
     
     this.libros.categoria=this.categoriaSelect.nativeElement.value
 
@@ -158,8 +156,8 @@ export class RegistroLibroComponent implements OnInit {
     this.http.post('http://localhost:8080/api/assets/upload', formData )
       .subscribe((res:any) => {
         console.log(res);
-        console.log(res.url)
-        this.libros.imagenget=res.url
+        console.log(res.key)
+        this.libros.imagenpost=res.key
         
         
         
@@ -184,9 +182,9 @@ export class RegistroLibroComponent implements OnInit {
     this.http.post('http://localhost:8080/api/assets/upload', formData)
       .subscribe((res:any) => {
         console.log(res);
-        console.log(res.data.url)
-        this.libros.imagenURL=res.data.url
-        console.log(this.libros.imagenURL)
+        console.log(res.key)
+        this.libros.imagenPhat=res.key
+        
         
         
         

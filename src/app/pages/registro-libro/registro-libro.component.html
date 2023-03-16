@@ -12,7 +12,7 @@
               <label style="text-align: center;" for="fileInputimg" class="custom-file-upload">
                 <i class="fas fa-image"></i> Seleccionar Imagen
               </label>
-              <input id="fileInputimg" type="file" [(ngModel)] = "libros.imagenpost" accept="image/*" #imagen name="sub"   (change)="capturarImagen($event)" >
+              <input id="fileInputimg" type="file"  accept="image/*" #imagen name="sub"   (change)="capturarImagen($event)" >
               <div *ngIf="fileContentimg">
                 <h4>{{ fileNameimg }}</h4>
               </div>
@@ -54,7 +54,7 @@
               <label style="text-align: center;" for="fileInput" class="custom-file-upload" aria-required="true">
                 <i class="fas fa-file-pdf"></i> Seleccionar PDF
               </label>
-              <input id="fileInput" type="file" [(ngModel)] = "libros.imagenPhat" #pdf (change)="onFileSelected($event)" title="Seleccione un archivo" >
+              <input id="fileInput" type="file"  #pdf (change)="onFileSelected($event)" title="Seleccione un archivo" >
               <div *ngIf="fileContent">
                 <h4>{{ fileName }}</h4>
               </div>
