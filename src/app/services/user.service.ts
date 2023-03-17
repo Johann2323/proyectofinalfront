@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 })
 export class UserService {
 
+  
 
     constructor(private httpClient: HttpClient, private loginService: LoginService) { }
 
@@ -19,4 +20,7 @@ export class UserService {
       return this.httpClient.post(`${baserUrl}/usuarios/admin`,user);
     }
 
+    public obtenerusuario(user:any){
+      return this.httpClient.get(`${baserUrl}/usuarios/allusers`,user);
+    }
 }

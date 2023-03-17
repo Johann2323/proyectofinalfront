@@ -14,7 +14,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./registro-admin.component.css']
 })
 export class RegistroAdminComponent implements OnInit {
+
+  usuario?: ArrayBuffer; 
   ngOnInit(): void {
+    this.userService.obtenerusuario(this.user).subscribe(
+      ususarios => this.usuario = ususarios,  
+    
+    );
   }
   public user = {
     username: '',

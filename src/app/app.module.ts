@@ -37,6 +37,7 @@ import { StockComponent } from './pages/stock/stock.component';
 import { PagosComponent } from './pages/pagos/pagos.component';
 import { CompraComponent } from './pages/compra/compra.component';
 import { FormCompraComponent } from './pages/compra/form-compra/form-compra.component';
+import { VistaPedidosCompraComponent } from './pages/vista-pedidos-compra/vista-pedidos-compra.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +59,8 @@ import { FormCompraComponent } from './pages/compra/form-compra/form-compra.comp
     RegistroAdminComponent,
     PagosComponent,
     CompraComponent,
-    FormCompraComponent
+    FormCompraComponent,
+    VistaPedidosCompraComponent
   ],
   imports: [
     RouterModule.forRoot([
@@ -81,6 +83,7 @@ import { FormCompraComponent } from './pages/compra/form-compra/form-compra.comp
       {path: 'app-registro-admin', component: RegistroAdminComponent},
       {path: 'app-compra', component: CompraComponent},
       {path: 'app-form-compra', component: FormCompraComponent},
+      {path: 'app-vista-pedido-compra', component: VistaPedidosCompraComponent},
     ]),
     BrowserModule,
     AppRoutingModule,
