@@ -8,7 +8,7 @@ import { Compra } from '../pages/compra/compra';
 })
 export class CompraService {
 
-  private url:string="http://localhost:8080/api/compra/crearcompra";
+  private url:string="http://localhost:8080/api/compra";
   constructor(private http:HttpClient) { }
 
   getAll():Observable<Compra[]> { 
