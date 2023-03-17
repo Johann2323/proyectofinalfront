@@ -10,7 +10,7 @@ import { RouterModule, Routes } from '@angular/router';
 export class CategoriasComponent implements OnInit {
   currentComponent: string = 'fantasia';
   constructor() { }
-
+  mostrar:boolean=false;
   ngOnInit(): void {
   }
   showFantasia() {

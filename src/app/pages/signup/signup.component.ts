@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -19,7 +20,7 @@ export class SignupComponent implements OnInit {
     telefono: ''
   }
 
-  constructor(private userService: UserService, private snack: MatSnackBar) { }
+  constructor(private userService: UserService, private snack: MatSnackBar, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -40,6 +41,7 @@ export class SignupComponent implements OnInit {
         (data) => {
           console.log(data);
           Swal.fire('Usuario guardado', 'Usuario registrado con exito en el sistema', 'success');
+          this.router.navigate(['/app-login']);
         }, (error) => {
           console.log(error);
           this.snack.open('Ha ocurrido un error en el sistema !!', 'Aceptar', {

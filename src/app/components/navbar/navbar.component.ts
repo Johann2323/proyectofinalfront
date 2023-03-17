@@ -14,8 +14,8 @@ export class NavbarComponent implements OnInit {
   user: any = null;
   rol?: any = null;
   sinuser: boolean = true;
-  cliente: boolean = true;
-  admin: boolean = true;
+  cliente: boolean = false;
+  admin: boolean = false;
 
   constructor(public login: LoginService, private router: Router) { }
 
@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
   ngDoCheck(): void {
     this.rol = this.login.getUserRole();
     console.log(this.rol)
-    /*if (this.rol == null) {
+    if (this.rol == null) {
       this.sinuser = true;
       this.cliente = false;
       this.admin = false;
@@ -41,7 +41,7 @@ export class NavbarComponent implements OnInit {
       this.sinuser = false;
       this.cliente = false;
       this.admin = true;
-    }*/
+    }
   }
 
   public logout() {

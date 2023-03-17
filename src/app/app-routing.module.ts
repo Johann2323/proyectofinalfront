@@ -13,6 +13,8 @@ import { PagosComponent } from './pages/pagos/pagos.component';
 import { StockComponent } from './pages/stock/stock.component';
 import { RegistroAdminComponent } from './pages/registro-admin/registro-admin.component';
 import { CarritoComprasComponent } from './pages/carrito-compras/carrito-compras.component';
+import { CompraComponent } from './pages/compra/compra.component';
+
 
 const routes: Routes = [
   {
@@ -37,7 +39,11 @@ const routes: Routes = [
     path : 'app-pagos',
     component : PagosComponent,
     pathMatch : 'full',
-    canActivate:[NormalGuard]
+  },
+  {
+    path : 'app-compra',
+    component : CompraComponent,
+    pathMatch : 'full',
   },
   {
     path : 'app-stock',

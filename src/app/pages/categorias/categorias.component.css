@@ -1,38 +1,50 @@
 .container {
   display: flex;
-  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 86px;
+  max-width: 100%;
   height: 100%;
+  
+}
+
+.content {
+  display: flex;
+  margin-left: 30px;
+  margin-top: 30px;
+  background-color: white;
+  width: 74%;
+  max-height: 100%;
+}
+
+.menu {
+  background-color: #F1D9CE;
+  width: 20%;
+  margin-left: 0px;
+}
+
+.contenedor {
+  width: 30%;
+  height: 400px;
+}
+
+nav {
+  width: 300px;
+}
+
+nav ul {
+  list-style-type: none;
   margin: 0;
   padding: 0;
-  }
-  
-  nav {
-    background-color: #F1D9CE;
-    width: 200px;
-  }
-  
-  nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav li {
-    border-bottom: 0px solid #ddd;
-  }
-  
-  nav li a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-  }
-  
-  nav li a:hover {
-    background-color: #ddd;
-  }
-  
-  .content {
-    padding: 20px;
-  }
- 
-  
+}
+
+nav li {
+  border-bottom: 0px solid #ddd;
+}
+
+nav li a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+}
