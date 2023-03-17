@@ -35,6 +35,8 @@ import { RouterModule } from '@angular/router';
 import { CatAccionComponent } from './pages/cat-accion/cat-accion.component';
 import { StockComponent } from './pages/stock/stock.component';
 import { PagosComponent } from './pages/pagos/pagos.component';
+import { CompraComponent } from './pages/compra/compra.component';
+import { FormCompraComponent } from './pages/compra/form-compra/form-compra.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +55,10 @@ import { PagosComponent } from './pages/pagos/pagos.component';
     CatAccionComponent,
     CatHistoricoComponent,
     CarritoComprasComponent,
-    RegistroAdminComponent
+    RegistroAdminComponent,
+    PagosComponent,
+    CompraComponent,
+    FormCompraComponent
   ],
   imports: [
     RouterModule.forRoot([
@@ -74,6 +79,8 @@ import { PagosComponent } from './pages/pagos/pagos.component';
       {path: 'app-carrito-compras', component: CarritoComprasComponent},
       {path: 'app-stock', component: StockComponent},
       {path: 'app-registro-admin', component: RegistroAdminComponent},
+      {path: 'app-compra', component: CompraComponent},
+      {path: 'app-form-compra', component: FormCompraComponent},
     ]),
     BrowserModule,
     AppRoutingModule,
