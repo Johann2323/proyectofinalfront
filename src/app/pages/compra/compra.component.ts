@@ -3,8 +3,8 @@ import { CompraService } from 'src/app/services/compra.service';
 import { UserService } from 'src/app/services/user.service';
 import { Compra } from './compra';
 
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+//import jsPDF from 'jspdf';
+//import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-compra',
@@ -29,10 +29,10 @@ export class CompraComponent implements OnInit {
       c => this.compra = c
     );
     //
-    this.downloadPDF();
+    //this.downloadPDF();
   }
 
-  public downloadPDF() {
+  /* public downloadPDF() {
     // Extraemos el
     const DATA:any = document.getElementById('htmlData');
     const doc = new jsPDF('p', 'pt', 'a4');
@@ -55,6 +55,6 @@ export class CompraComponent implements OnInit {
     }).then((docResult) => {
       docResult.save(`${new Date().toISOString()}_factura.pdf`);
     });
-  }
+  } */
 
 }
