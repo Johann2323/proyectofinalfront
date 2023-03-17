@@ -12,9 +12,7 @@ export class UserService {
     constructor(private httpClient: HttpClient, private loginService: LoginService) { }
 
     public  añadirUsuario(user:any){
-      const token = this.loginService.getToken(); // Obtener el token del localStorage
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      return this.httpClient.post(`${baserUrl}/usuarios/`,user, {headers});
+      return this.httpClient.post(`${baserUrl}/usuarios/`,user);
     }
 
     public añadirUsuarioadmin(user:any){
