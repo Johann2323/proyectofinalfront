@@ -1,0 +1,62 @@
+<div class="contenedor">
+    <div class="row">
+        <div class="col-sm-5 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Registro de Compra</h5>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1151/1151250.png" width="100" height="100"
+                            class="text-center">
+                    </div>
+                    <form>
+                        <div class="form-group row">
+                            <label for="fecha" class="col-sm-3 col-form-label">Fecha</label>
+                            <div class="col-sm-9">
+                                <input name="fecha" [(ngModel)]="compra.fecha_compra" type="date" class="form-control"
+                                    placeholder="Escriba fecha" required>
+                                <div *ngIf="!compra.fecha_compra" class="text-danger">Falta completar este campo</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="estado" class="col-sm-3 col-form-label">Estado</label>
+                            <div class="col-sm-9">
+                                <select name="estado" [(ngModel)]="compra.estado" class="form-control" required>
+                                    <option value="" disabled selected>Seleccione el estado</option>
+                                    <option value="disponible">Disponible</option>
+                                    <option value="no-disponible">No Disponible</option>
+                                </select>
+                                <div *ngIf="!compra.estado" class="text-danger">Falta completar este campo</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="cantidad" class="col-sm-3 col-form-label">Cantidad</label>
+                            <div class="col-sm-9">
+                                <input name="cantidad" [(ngModel)]="compra.total" type="number" class="form-control"
+                                    placeholder="Escribe cantidad" required>
+                                <div *ngIf="!compra.total" class="text-danger">Falta completar este campo</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="metodo-pago" class="col-sm-3 col-form-label">Metodo de pago</label>
+                            <div class="col-sm-9">
+                                <select name="metodo-pago" [(ngModel)]="compra.metodo_pago" class="form-control"
+                                    placeholder="Seleccione el pago" required>
+                                    <option value="" disabled selected>Seleccione el Metodo de pago</option>
+                                    <option value="credit-card">Credit Card</option>
+                                    <option value="debit-card">Debit Card</option>
+                                    <option value="paypal">Paypal</option>
+                                    <option value="apple-pay">Apple Pay</option>
+                                </select>
+                                <div *ngIf="!compra.metodo_pago" class="text-danger">Falta completar este campo</div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary" (click)='create()'
+                                [routerLink]="['/app-compra']">Comprar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
