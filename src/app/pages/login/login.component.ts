@@ -41,13 +41,14 @@ export class LoginComponent implements OnInit {
 
     if(this.loginData.password.trim() == '' || this.loginData.password.trim() == null){
       Swal.fire({
+        
         title: "La contraseña es requerida!!",
         icon: "warning",
         confirmButtonText: "Aceptar",
         timer: 2000,
         timerProgressBar: true,
         toast: true,
-        position: "center",
+        position: "center"
       });
       return;
     }

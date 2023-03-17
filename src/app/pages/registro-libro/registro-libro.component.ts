@@ -34,7 +34,10 @@ export class RegistroLibroComponent implements OnInit {
   fileContent: any;
   fileNameimg: any;
   fileContentimg: any;
+  fechaFormateada?: string;
+  
   constructor(private sanitizer: DomSanitizer,private libroservice: RegistroLibroService, private router: Router,private http: HttpClient) { }
+  @ViewChild('id') id!: ElementRef;
   @ViewChild('titulo') titulo!: ElementRef;
   @ViewChild('autor') autor!: ElementRef;
   @ViewChild('editorial') editorial!: ElementRef;
@@ -66,42 +69,85 @@ export class RegistroLibroComponent implements OnInit {
   }
 
   crearlibros(libro:any){
+
+    if(this.validarpdf==true && this.validarimg==true){
+      this.libros.titulo=this.titulo.nativeElement.value
+    
+      this.libros.autor=this.autor.nativeElement.value
+
+      this.libros.editorial=this.editorial.nativeElement.value
+
+      this.libros.precio=this.precio.nativeElement.value
+
+      this.libros.stock=this.stock.nativeElement.value
+      
+      this.libros.descripcion=this.descripcion.nativeElement.value
+      this.libros.fechacreacion=this.fecha.nativeElement.value
+      
+      
+      
+      this.libros.categoria=this.categoriaSelect.nativeElement.value
+
+      console.log(libro.titulo,libro.autor, libro.editorial,libro.precio,libro.stock,libro.descripcion,libro.imagenpost, libro.imagenPhat,libro.categoria)
+
+      this.libroservice.create(this.libros).subscribe(
+        (data) => {
+          console.log(data);
+          window.location.reload();
+          Swal.fire('Libro guardado', 'Libro registrado con exito en el sistema', 'success');
+          
+        }, (error) => {
+          console.log(error);
+          Swal.fire('Error', 'Libro no registrado', 'error');
+        }
+      )
+    }else{
+      Swal.fire('Agregue los archivos necesario', 'No se pudo completar el registro', 'warning');
+    }
      
-    this.libros.titulo=this.titulo.nativeElement.value
     
-    this.libros.autor=this.autor.nativeElement.value
-
-    this.libros.editorial=this.editorial.nativeElement.value
-
-    this.libros.precio=this.precio.nativeElement.value
-
-    this.libros.stock=this.stock.nativeElement.value
-    
-    this.libros.descripcion=this.descripcion.nativeElement.value
-    
-    
-    
-    this.libros.categoria=this.categoriaSelect.nativeElement.value
-
-    console.log(libro.titulo,libro.autor, libro.editorial,libro.precio,libro.stock,libro.descripcion,libro.imagenpost, libro.imagenPhat,libro.categoria)
-
-    this.libroservice.create(this.libros).subscribe(
-      (data) => {
-        console.log(data);
-        Swal.fire('Usuario guardado', 'Usuario registrado con exito en el sistema', 'success');
-      }, (error) => {
-        console.log(error);
-        Swal.fire('Error', 'Usuario no registrado', 'error');
-      }
-    )
 
   }
+
+
+editarlibro(id:string, libro:any){
+
+  const numString = id;
+const num = parseInt(numString); // num es igual a 42
+
+console.log(num)
+  this.libroservice.update(num,this.libros).subscribe(
+    (data) => {
+      console.log(data);
+      window.location.reload();
+      Swal.fire('Libro actualizado', 'Libro actualizado con exito en el sistema',"success");
+    }, (error) => {
+      console.log(error);
+      Swal.fire('Error', 'Libro no actualizado', 'error');
+    }
+  )
+}
+
+  validaredit:boolean=false
   editar(libro:any){
+    this.id.nativeElement.value=libro.id;
     this.titulo.nativeElement.value = libro.titulo;
     this.autor.nativeElement.value = libro.autor;
     this.editorial.nativeElement.value = libro.editorial;
     this.precio.nativeElement.value = libro.precio;
     this.stock.nativeElement.value = libro.stock;
+    this.descripcion.nativeElement.value = libro.descripcion;
+    
+
+    const fecha = new Date(libro.fechacreacion);
+    const year = fecha.getFullYear();
+    const month = (fecha.getMonth() + 1).toString().padStart(2, '0'); // sumar 1 al mes porque los meses en JavaScript empiezan en 0
+    const day = (fecha.getDate()+1).toString().padStart(2, '0');
+    const hours = fecha.getHours().toString().padStart(2, '0');
+    const minutes = fecha.getMinutes().toString().padStart(2, '0');
+    this.fechaFormateada = `${year}-${month}-${day}T${hours}:${minutes}`;
+
+    this.fecha.nativeElement.value = this.fechaFormateada;
 
      // Obtener el elemento nativo del ComboBox
      const selectElement = this.categoriaSelect.nativeElement;
@@ -114,9 +160,15 @@ export class RegistroLibroComponent implements OnInit {
        selectedOption = new Option(libro.categoria, libro.categoria);
        selectElement.add(selectedOption);
      }
+
+      this.validaredit=true
+     
  
      // Establecer la opción seleccionada en el ComboBox
      selectElement.value = libro.categoria;
+     console.log(libro.id)
+
+     
 
   }
 
@@ -135,7 +187,7 @@ export class RegistroLibroComponent implements OnInit {
     )
   }
   
-
+  validarimg:boolean=false
   capturarImagen(event: any) {
     const archivocapturado = event.target.files[0]
     
@@ -158,13 +210,21 @@ export class RegistroLibroComponent implements OnInit {
         console.log(res);
         console.log(res.key)
         this.libros.imagenpost=res.key
-        
-        
-        
+        this.validarimg=true
+        Swal.fire({
+          
+          title: "Imagen cargada correctamente",
+          icon: "success",
+          timer: 1500,
+          timerProgressBar: true,
+          toast: true,
+          position: "center",
+          html:'<i class="fas fa-image"></i>',
+        });
       });
   }
 
-
+  validarpdf: boolean=false;
   onFileSelected(event:any) {
     const file: File = event.target.files[0];
     
@@ -184,6 +244,17 @@ export class RegistroLibroComponent implements OnInit {
         console.log(res);
         console.log(res.key)
         this.libros.imagenPhat=res.key
+        this.validarpdf=true
+        Swal.fire({
+          
+          title: "Pdf cargado correctamente",
+          icon: "success",
+          timer: 1500,
+          timerProgressBar: true,
+          toast: true,
+          position: "center",
+          html:'<i class="fas fa-file-pdf"></i>',
+        });
         
         
         

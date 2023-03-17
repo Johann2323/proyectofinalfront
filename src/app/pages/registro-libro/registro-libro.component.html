@@ -6,9 +6,16 @@
         <div class="card-body ">
             <h5 style="text-align: center;">Formulario del Libro</h5><br>
           <form ngNativeValidate  (ngSubmit)="crearlibros(libros)">
+
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-3 col-form-label">ID</label>
+              <div class="col-sm-9">
+                <input type="number" [(ngModel)] = "libros.id" class="form-control" #id [ngModelOptions]="{standalone: true}"  placeholder="Aparecera solo cuando edite"  disabled>
+              </div><br>
+          </div>
             
             <hr>
-            <div class="form-group row">
+            <div *ngIf="!validaredit" class="form-group row">
               <label style="text-align: center;" for="fileInputimg" class="custom-file-upload">
                 <i class="fas fa-image"></i> Seleccionar Imagen
               </label>
@@ -20,37 +27,37 @@
             <div class="form-group row">
                 <label for="staticEmail" class="col-sm-3 col-form-label">Título</label>
                 <div class="col-sm-9">
-                  <input type="text" [(ngModel)] = "libros.titulo" class="form-control" #titulo [ngModelOptions]="{standalone: true}"  placeholder="Escribe el título del libro" required>
+                  <input type="text" [(ngModel)] = "libros.titulo" value="{{libros.titulo}}" class="form-control" #titulo [ngModelOptions]="{standalone: true}"  placeholder="Escribe el título del libro" required>
                 </div><br><br><br>
             </div>
             <div class="form-group row">
                 <label for="staticEmail" class="col-sm-3 col-form-label">Autor</label>
                 <div class="col-sm-9">
-                  <input type="text" [(ngModel)] = "libros.autor" class="form-control" [ngModelOptions]="{standalone: true}"  #autor placeholder="Escribe el autor del libro" required>
+                  <input type="text" [(ngModel)] = "libros.autor" value="{{libros.autor}}" class="form-control" [ngModelOptions]="{standalone: true}"  #autor placeholder="Escribe el autor del libro" required>
                 </div><br><br><br>
               </div>
               <div class="form-group row">
                 <label for="staticEmail" class="col-sm-3 col-form-label">Editorial</label>
                 <div class="col-sm-9">
-                  <input type="text" [(ngModel)] = "libros.editorial" class="form-control" [ngModelOptions]="{standalone: true}"  #editorial placeholder="Escribe la editorial al que pertenece" required>
+                  <input type="text" [(ngModel)] = "libros.editorial" value="{{libros.editorial}}" class="form-control" [ngModelOptions]="{standalone: true}"  #editorial placeholder="Escribe la editorial al que pertenece" required>
                 </div><br><br><br>
               </div>
 
               <div class="form-group row">
                 <label for="staticEmail" class="col-sm-3 col-form-label">Descripcion</label>
                 <div class="col-sm-9">
-                  <input type="text" [(ngModel)] = "libros.descripcion" class="form-control" [ngModelOptions]="{standalone: true}"  #descripcion placeholder="Escriba una descripcion corta" required>
+                  <input type="text" [(ngModel)] = "libros.descripcion" value="{{libros.descripcion}}" class="form-control" [ngModelOptions]="{standalone: true}"  #descripcion placeholder="Escriba una descripcion corta" required>
                 </div><br><br><br>
               </div>
 
-              <div class="form-group row">
+              <div *ngIf="!validaredit" class="form-group row">
                 <label for="staticEmail" class="col-sm-3 col-form-label">Fecha de creacion</label>
                 <div class="col-sm-9">
                   <input type="datetime-local" [(ngModel)] = "libros.fechacreacion" [ngModelOptions]="{standalone: true}"  class="form-control" #fecha  required>
                 </div>
               </div>
             <hr>  
-            <div class="form-group row">
+            <div *ngIf="!validaredit" class="form-group row">
               <label style="text-align: center;" for="fileInput" class="custom-file-upload" aria-required="true">
                 <i class="fas fa-file-pdf"></i> Seleccionar PDF
               </label>
@@ -62,7 +69,7 @@
             </div><hr>
 
 
-              <div class="form-group row">
+              <div *ngIf="!validaredit" class="form-group row">
                 <label for="staticEmail" class="col-sm-3 col-form-label">Categoria</label>
                 <div class="col-sm-9">
                     <select  class="form-control"  style="width: 200px; height: 40px;  border-radius: 5px; border-color:darkgray;" #categoriaSelec id="inputGroupSelect01" required>
@@ -77,20 +84,21 @@
               </div>
               
                 <div class="form-group row">
-                  <label for="staticEmail"  class="col-sm-3 col-form-label">Precio</label>
-                  <div class="col-sm-9">
-                    <input type="number" #precio class="form-control" [(ngModel)] = "libros.precio" [ngModelOptions]="{standalone: true}"  placeholder="Escribe el precio del libro" required>
+                  <label for="staticEmail"  class="col-sm-3 col-form-label">Precio $</label>
+                  <div class="col-sm-7">
+                    <input type="number" #precio class="form-control" [(ngModel)] = "libros.precio" value="{{libros.precio}}" [ngModelOptions]="{standalone: true}"  placeholder="Precio del libro" required>
                   </div><br><br><br>
                 </div>
                 <div class="form-group row">
                   <label for="staticEmail" class="col-sm-3 col-form-label">Stock</label>
-                  <div class="col-sm-9">
-                    <input type="number"  #stock  class="form-control" [(ngModel)] = "libros.stock" [ngModelOptions]="{standalone: true}"  placeholder="Escribe el número de libros disponibles" required>
+                  <div class="col-sm-7">
+                    <input type="number"  #stock  class="form-control" [(ngModel)] = "libros.stock" value="{{libros.stock}}" [ngModelOptions]="{standalone: true}"  placeholder="Libros disponibles" required>
                   </div><br><br><br>
                 </div>
 
-                <button type="submit" id="guardar" class="boton btn-primary ">Crear</button>
+                <button *ngIf="!validaredit" type="submit" id="guardar" class="boton btn-primary ">Crear</button>
           </form>
+          <button *ngIf="validaredit" (click)="editarlibro(id.value,libros)" type="button" id="editar" class="boton btn-primary ">Editar</button>
           
         </div>
       </div>
@@ -115,7 +123,9 @@
                 <th style="background-color: #F1D9CE;" scope="col">Titulo</th>
                 <th style="background-color: #F1D9CE;" scope="col">Autor</th>
                 <th style="background-color: #F1D9CE;" scope="col">Editorial</th>
+                <th style="background-color: #F1D9CE;" scope="col">Descripcion</th>
                 <th style="background-color: #F1D9CE;" scope="col">Categoria</th>
+                <th style="background-color: #F1D9CE;" scope="col">Creacion</th>
                 <th style="background-color: #F1D9CE;" scope="col">Precio</th>
                 <th style="background-color: #F1D9CE;" scope="col">Stock</th>
                 <th style="background-color: #F1D9CE;" scope="col">Pdf</th>
@@ -136,8 +146,10 @@
                 <td >{{ libro.titulo }}</td>
                 <td>{{ libro.autor }}</td>
                 <td>{{ libro.editorial }}</td>
+                <td>{{ libro.descripcion }}</td>
                 <td>{{ libro.categoria }}</td>
-                <td>{{ libro.precio }}</td>
+                <td>{{ libro.fechacreacion }}</td>
+                <td>{{ libro.precio }}$</td>
                 <td>{{ libro.stock }}</td>
                 <td>
                   <a href="{{libro.imagenURL}}">

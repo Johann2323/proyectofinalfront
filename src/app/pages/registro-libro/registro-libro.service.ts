@@ -12,6 +12,7 @@ export class RegistroLibroService {
   private urlendpoint1: string = 'http://localhost:8080/api/listarlibros';
   private urlendpoint2: string = 'http://localhost:8080/api/cursos/getlibros';
   private urlBuscarLibro: string = 'http://localhost:8080/api/cursos/buscarxnombre';
+  private urleditarlibro: string = 'http://localhost:8080/api/cursos/editarLibro';
 
 
   
@@ -27,6 +28,17 @@ export class RegistroLibroService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post<libros>(this.urlendpoint, libro, { headers });
   }
+
+
+  update(id: number, libro: libros): Observable<libros> {
+    const token = this.loginService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${this.urleditarlibro}/${id}`; // Agregar el ID al endpoint
+  
+    return this.http.put<libros>(url, libro, { headers });
+  }
+
+  
 
   obtenerLibro(nombre: String): Observable<libros[]> {
     const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
