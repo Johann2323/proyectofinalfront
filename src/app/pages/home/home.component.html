@@ -1,21 +1,19 @@
-<div  class="elemento">
-  <h3>Novedades</h3>
-  <br>
-  <div *ngFor="let libro of libros1">
-    <div *ngIf="isFechaUltimoMes(libro.fechacreacion+'')">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="card" style="width: 18rem;">
-            <img src="{{libro.imagenget}}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{ libro.titulo }}</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">{{ libro.autor }}</li>
-              <li class="list-group-item">{{ libro.precio }}</li>
-            </ul>
-            <div class="card-body">
-              <a href="/app-carrito-compras" class="card-link">Añadir al carrito</a>
+<div class="elemento">
+  <h1>Novedades</h1><br> <br>
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin: 30px;">
+    <div *ngFor="let libro of libros1">
+      <div *ngIf="isFechaUltimoMes(libro.fechacreacion+'')">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card"
+              style="border-color: #BE6134;  width: 18rem; flex-basis: calc(33.33% - 10px); margin-bottom: 10px; text-align: center;">
+              <img src="{{libro.imagenget}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title" style="color:coral; font-size: 30px;"> {{ libro.titulo }}</h5>
+                <li class="card list-group-item">Autor: {{ libro.autor }}</li>
+                <li class="card list-group-item">Precio: <strong>{{ libro.precio }}</strong></li>
+                <button [routerLink]="'/app-carrito-compras'" class="boton btn " style="margin-right: 10px; background-color:#BE6134; font-size: small; color: white;">Añadir al carrito</button>
+              </div>
             </div>
           </div>
         </div>
