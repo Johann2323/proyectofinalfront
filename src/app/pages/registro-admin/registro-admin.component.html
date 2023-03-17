@@ -9,47 +9,48 @@
             <div class="form-group row">
               <label for="staticEmail" class="col-sm-3 col-form-label">Username</label>
               <div class="col-sm-9">
-                <input type="text " (ngModel) = "user.username" #nombre class="form-control"  pattern="[a-zA-Z ]*" name="nombre" placeholder="Escribe tu usuario"  required>
+                <input type="text " [(ngModel)] = "user.username" #nombre class="form-control"  pattern="[a-zA-Z ]*" name="nombre" placeholder="Escribe tu usuario"  required>
               </div><br><br><br>
             </div>
             <div class="form-group row">
               <label for="staticEmail" class="col-sm-3 col-form-label">Nombres</label>
               <div class="col-sm-9">
-                <input type="text" (ngModel) = "user.nombre" class="form-control"  name="nombre" placeholder="Escribe tu nombre" required>
+                <input type="text" [(ngModel)] = "user.nombre" class="form-control"  name="nombre" placeholder="Escribe tu nombre" required>
               </div><br><br><br>
             </div>
             <div class="form-group row">
               <label for="staticEmail" class="col-sm-3 col-form-label">Apellidos</label>
               <div class="col-sm-9">
-                <input type="text" (ngModel) = "user.apellido" class="form-control"  name="nombre" placeholder="Escribe tu nombre" required>
+                <input type="text" [(ngModel)] = "user.apellido" class="form-control"  name="nombre" placeholder="Escribe tu nombre" required>
               </div><br><br><br>
             </div>
             <div class="form-group row">
               <label for="staticEmail" class="col-sm-3 col-form-label">Dirección</label>
               <div class="col-sm-9">
-                <input type="text"  class="form-control"   (ngModel) = "user.direccion" name="direccion" placeholder="Escribe tu dirección" required>
+                <input type="text"  class="form-control"   [(ngModel)] = "user.direccion" name="direccion" placeholder="Escribe tu dirección" required>
               </div><br><br><br>
             </div>
             <div class="form-group row">
               <label for="staticEmail" class="col-sm-3 col-form-label">Email</label>
               <div class="col-sm-9">
-                <input type="text"  (ngModel) = "user.email" class="form-control" #contra1 id="staticEmail"  name="correo" placeholder="Escribe tu correo" required>
+                <input type="text"  [(ngModel)] = "user.email" class="form-control"  id="staticEmail"  name="correo" placeholder="Escribe tu correo" required>
               </div><br><br><br>
             </div>
             <div class="form-group row">
               <label for="inputPassword" class="col-sm-3 col-form-label">Contraseña</label>
               <div class="col-sm-9">
-                <input type="password" (ngModel) = "user.password" class="form-control" #contra2 id="inputPassword" name="contraseña" placeholder="Ingresa tu contrseña" required>
+                <input type="password" [(ngModel)] = "user.password" class="form-control" #contra1 id="inputPassword" name="contraseña" placeholder="Ingresa tu contrseña" required>
               </div>
             </div><br>
             <div class="form-group row">
               <label for="inputPassword" class="col-sm-3 col-form-label">Confirmar contraseña</label>
               <div class="col-sm-9">
-                <input type="password" class="form-control" id="inputPassword" placeholder="Escribe nuevamente tu contraseña" required>
+                <input type="password" class="form-control" #contra2 id="inputPassword2" placeholder="Escribe nuevamente tu contraseña" required>
               </div>
             </div>
+            <button type="submit" class="boton btn-primary ">Registrarse</button>
           </form><br><br>
-              <button type="submit" class="boton btn-primary ">Registrarse</button>
+             
             </div>
           </div>
         </div>

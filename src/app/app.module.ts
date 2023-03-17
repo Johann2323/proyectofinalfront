@@ -52,7 +52,8 @@ import { PagosComponent } from './pages/pagos/pagos.component';
     CatDramaComponent,
     CatAccionComponent,
     CatHistoricoComponent,
-    CarritoComprasComponent
+    CarritoComprasComponent,
+    RegistroAdminComponent
   ],
   imports: [
     RouterModule.forRoot([
@@ -72,6 +73,7 @@ import { PagosComponent } from './pages/pagos/pagos.component';
       {path: 'app-eventos', component: EventosComponent},
       {path: 'app-carrito-compras', component: CarritoComprasComponent},
       {path: 'app-stock', component: StockComponent},
+      {path: 'app-registro-admin', component: RegistroAdminComponent},
     ]),
     BrowserModule,
     AppRoutingModule,

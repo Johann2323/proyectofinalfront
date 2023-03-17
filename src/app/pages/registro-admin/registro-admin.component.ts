@@ -21,21 +21,18 @@ export class RegistroAdminComponent implements OnInit {
     password: '',
     nombre: '',
     apellido: '',
-    direccion:'',
+    direccion: '',
     email: '',
     telefono: ''
   }
-  constructor(private userService: UserService,  private snack: MatSnackBar) { }
+  constructor(private userService: UserService) { }
 
   formSubmit(contra1: string, contra2: string) {
+    console.log(contra1, contra2)
     if (contra1 == contra2) {
       console.log(this.user);
       if (this.user.username == '' || this.user.username == null) {
-        this.snack.open('El nombre de usuario es requerido !!', 'Aceptar', {
-          duration: 3000,
-          verticalPosition: 'top',
-          horizontalPosition: 'right'
-        });
+        //Swal.fire('Coloque un usuario', 'Error al crear Uusario', 'warning');
         return;
       }
 
@@ -45,13 +42,11 @@ export class RegistroAdminComponent implements OnInit {
           Swal.fire('Usuario guardado', 'Usuario registrado con exito en el sistema', 'success');
         }, (error) => {
           console.log(error);
-          this.snack.open('Ha ocurrido un error en el sistema !!', 'Aceptar', {
-            duration: 3000
-          });
+
         }
       )
-    }else{
+    } else {
       Swal.fire('Error', 'Contraseñas no coinciden', 'error');
+    }
   }
-}
 }
