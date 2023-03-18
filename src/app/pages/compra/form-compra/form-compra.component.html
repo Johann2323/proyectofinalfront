@@ -8,7 +8,7 @@
                         <img src="https://cdn-icons-png.flaticon.com/512/1151/1151250.png" width="100" height="100"
                             class="text-center">
                     </div>
-                    <form>
+                    <form (submit)="crearCompras()" #compraForm="ngForm">
                         <div class="form-group row">
                             <label for="fecha" class="col-sm-3 col-form-label">Fecha</label>
                             <div class="col-sm-9">
@@ -51,8 +51,8 @@
                             </div>
                         </div>
                         <div class="text-center mt-4">
-                            <button type="submit" class="btn btn-primary" (click)='create()'
-                                 style="font-size: small;" class="far fa-">Comprar</button>
+                            <button type="submit" class="boton btn " style="background-color:#BE6134; font-size: small;"
+                            [disabled]="!compraForm.valid">Registrarse</button>
                         </div>
                     </form>
                 </div>
