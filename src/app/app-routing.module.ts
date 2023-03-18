@@ -14,7 +14,7 @@ import { StockComponent } from './pages/stock/stock.component';
 import { RegistroAdminComponent } from './pages/registro-admin/registro-admin.component';
 import { CarritoComprasComponent } from './pages/carrito-compras/carrito-compras.component';
 import { CompraComponent } from './pages/compra/compra.component';
-
+import { FormCompraComponent } from './pages/compra/form-compra/form-compra.component';
 
 const routes: Routes = [
   {
@@ -43,8 +43,14 @@ const routes: Routes = [
   {
     path : 'app-compra',
     component : CompraComponent,
-    pathMatch : 'full',
+    pathMatch : 'full'
   },
+  {
+    path : 'app-form-compra',
+    component : FormCompraComponent,
+    pathMatch : 'full'
+  },
+
   {
     path : 'app-stock',
     component : StockComponent,
@@ -55,9 +61,8 @@ const routes: Routes = [
     path : 'app-registro-admin',
     component : RegistroAdminComponent,
     pathMatch : 'full',
-    canActivate:[NormalGuard]
+   
   },
-  
   
   {
     path : 'app-registro-libro',

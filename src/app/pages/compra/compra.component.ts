@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { generate } from 'rxjs';
 import { CompraService } from 'src/app/services/compra.service';
 import { UserService } from 'src/app/services/user.service';
+import { LoginService } from 'src/app/services/login.service';
+import Swal from 'sweetalert2';
 import { Compra } from './compra';
 
 //import jsPDF from 'jspdf';
@@ -13,25 +16,48 @@ import { Compra } from './compra';
 })
 export class CompraComponent implements OnInit {
 
-  compra: Compra[] = [];
+  /*compra: Compra[] = [];*/
 
   public details = {
-    numeroFactura: '',
-    nombreCliente: '',
-    direccionCliente: '',
-    emailCliente: '',
+    numeroFactura: this.generador(),
+    precioCliente: ''
+  }
+  
+  usuario?: ArrayBuffer;
+
+  public client = {
+    nombre: '',
+    direccion: '',
+    email: ''
   }
 
-  constructor(private compraService: CompraService, private userService: UserService) { }
+  compra?: ArrayBuffer;
+
+  public buy = {
+    fecha_compra: '',
+    estado: '',
+    total: '',
+    metodo_pago: ''
+  }
+
+
+  constructor(private compraService: CompraService, private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.compraService.getAll().subscribe(
+/*     this.compraService.obtener(this.buy).subscribe(
       c => this.compra = c
-    );
-    //
+    ); */
+    /*this.userService.obtenerusuario(this.client).subscribe(
+      c => this.usuario = c
+    );*/
+    const usuarioo = this.loginService.getUser()
+    console.log(usuarioo)
+
+  
     //this.downloadPDF();
   }
 
+  
   /* public downloadPDF() {
     // Extraemos el
     const DATA:any = document.getElementById('htmlData');
@@ -56,5 +82,19 @@ export class CompraComponent implements OnInit {
       docResult.save(`${new Date().toISOString()}_factura.pdf`);
     });
   } */
+
+
+  generador(): string {
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; 
+    const longitud = 8; 
+    let factura = '';
+    for (let i = 0; i < longitud; i++) {
+      factura += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+    }
+    return factura;
+  }
+  
+
+
 
 }
