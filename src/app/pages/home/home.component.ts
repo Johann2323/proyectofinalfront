@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
     this.libroservice.getLibros().subscribe(
       libro => this.libros1 = libro
       //libro => this.libros=libro
+      
     );
   }
   
