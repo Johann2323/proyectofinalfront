@@ -1,20 +1,32 @@
 <div class="contenedor">
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="card" style="width:300px;" >
-          <div class="card-body" style="height: 500px; overflow: auto;">
-            <h5 class="card-title" style="text-align: center;" >Carrito de Compras</h5><br>
-            <form class="d-flex buscar" role="search">
-            </form>
-            <table class="table" style="background-color: #F1D9CE; border-color: black; border: 2px;" >
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Articulo</th>
-                  <th scope="col">Costo</th>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card" style="width:300px;" >
+        <div class="card-body" style="height: 500px; overflow: auto;">
+          <h5 class="card-title" style="text-align: center;" >Carrito de Compras</h5><br>
+          <form class="d-flex buscar" role="search">
+          </form>
+          <table class="table" style="background-color: #F1D9CE; border-color: black; border: 2px;" >
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Articulo</th>
+                <th scope="col">Costo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0001</td>
+                <td>Halo Series</td>
+                <td>20,00</td>
+              </tr>
+
+              <tr>
+                  <td>0001</td>
+                  <td>Halo Series</td>
+                  <td>20,00</td>
                 </tr>
-              </thead>
-              <tbody>
+
                 <tr>
                   <td>0001</td>
                   <td>Halo Series</td>
@@ -22,33 +34,25 @@
                 </tr>
 
                 <tr>
-                    <td>0001</td>
-                    <td>Halo Series</td>
-                    <td>20,00</td>
-                  </tr>
+                  <td>0001</td>
+                  <td>Halo Series</td>
+                  <td>20,00</td>
+                </tr>
 
-                  <tr>
-                    <td>0001</td>
-                    <td>Halo Series</td>
-                    <td>20,00</td>
-                  </tr>
-
-                  <tr>
-                    <td>0001</td>
-                    <td>Halo Series</td>
-                    <td>20,00</td>
-                  </tr>
-
-                  <tr>
-                    <td>0001</td>
-                    <td>Halo Series</td>
-                    <td>20,00</td>
-                  </tr>
-              </tbody>
-            </table>
-            Total:
-          </div>
+                <tr>
+                  <td>0001</td>
+                  <td>Halo Series</td>
+                  <td>20,00</td>
+                </tr>
+            </tbody>
+          </table>
+          Total:
+          <br><br>
+          <button type="submit" class="boton btn " [routerLink]="'/app-pagos'" style="background-color:#BE6134; font-size: small;">Realizar
+            Pago</button>
         </div>
-      </div>  
-    </div>
+      </div>
+    </div>  
   </div>
+</div>
+

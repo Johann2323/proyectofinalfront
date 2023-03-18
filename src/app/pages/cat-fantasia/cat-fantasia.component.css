@@ -1,4 +1,8 @@
-
+.card:hover {
+    background-color: rgba(245, 181, 86, 0.5); /* Aplicar un fondo semi-transparente cuando se hace hover */
+    cursor: pointer; /* Cambiar el cursor del mouse cuando se hace hover */
+  }
+  
 .container {
     display: flex;
     width: 100%;
