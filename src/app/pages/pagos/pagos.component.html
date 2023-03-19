@@ -7,65 +7,25 @@
         </h5>
         <p class="card-title" style="text-align: center; color:gray;">¿Como deceas realizar tu compra?</p><br>
         <form>
-          <div class="form-group row">
-            <label for="payment-type" style="text-align: left;">Tipo de pago:</label><br>
-            <select id="payment-type" style="position: fixed; margin-left:160px; height: 40px; width: 500px;"
-              class="form-control" required>
-              <option value="">Seleccione el pago</option>
-              <option value="credit-card">Credit Card</option>
-              <option value="debit-card">Debit Card</option>
-              <option value="paypal">Paypal</option>
-              <option value="apple-pay">Apple Pay</option>
-            </select><br><br><br>
-          </div>
-          <div class="form-group row">
-            <label for="card-number" style="text-align: left;">Numero de Card:</label><br>
-            <input type="text" style="position: fixed; margin-left:160px;  height: 40px; width: 500px;" id="card-number"
-              class="form-control" placeholder="Ingrese numero de Card" required><br><br><br>
-          </div>
 
           <div class="form-group row">
-            <label for="card-number" style="text-align: left;">Dirreccion:</label><br>
+            <label for="payment-type" style="text-align: left;">Tipo de pago:</label>
+            <select id="payment-type" class="form-control" style="width: 500px;" required>
+              <option *ngFor="let openn of comprass">{{ openn.metodo_pago }}</option>
+            </select>
+          </div>
+
+          
+          <div class="form-group row">
+            <label for="card-number" style="text-align: left;">Nombre:</label><br>
             <input type="text" style="position: fixed; margin-left:160px;  height: 40px; width: 500px;" id="card-number"
-              class="form-control" placeholder="Ingrese la direccion" required><br><br><br>
+              class="form-control"  required><br><br><br>
           </div>
-          <div class="form-group row">
-            <label for="expiry-month" style="text-align: left;">Mes de Expiracion:</label><br>
-            <select id="expiry-month" style="position: fixed; margin-left:160px;  height: 40px; width: 500px;"
-              class="form-control" required>
-              <option value="">Seleccione Mes</option>
-              <option value="01">Enero</option>
-              <option value="02">Febrero</option>
-              <option value="03">Marzo</option>
-              <option value="04">Abril</option>
-              <option value="05">Mayo</option>
-              <option value="06">Junio</option>
-              <option value="07">Julio</option>
-              <option value="08">Agosto</option>
-              <option value="09">Septiembre</option>
-              <option value="10">Octobre</option>
-              <option value="11">Noviembre</option>
-              <option value="12">Diciembre</option>
-            </select><br><br><br>
+          
+          <div class = "container text-center">
+            <button type="button" class="boton btn" style="margin-right: 50px; background-color:#BE6134; font-size: small; color: white;"
+            (click)="good()"><strong>Realizar pago</strong></button>
           </div>
-          <div class="form-group row">
-            <label for="expiry-year" style="text-align: left; position: fixed">Año de Expiracion:</label>
-            <select id="expiry-year" style="position: fixed; margin-left:160px; height: 40px; width: 500px;"
-              class="form-control" required>
-              <option value="">Seleccione Año</option>
-              <option value="2022">2023</option>
-              <option value="2023">2024</option>
-              <option value="2024">2025</option>
-              <option value="2025">2026</option>
-            </select><br><br><br>
-          </div>
-          <div class="form-group row">
-            <label for="cvv" style="text-align: left; margin-left: 30px;">CVV:</label><br>
-            <input type="text" id="cvv" style=" position: fixed; margin-left:160px; height: 40px; width: 500px;"
-              class="form-control" placeholder="Ingrese CVV" required><br><br><br>
-          </div>
-          <button type="submit" class="boton btn " [routerLink]="'/app-compra'" style="background-color:#BE6134; font-size: small;">Realizar
-            Pago</button>
         </form><br>
 
       </div>

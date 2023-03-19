@@ -17,7 +17,7 @@ import { formatDate } from '@angular/common';
 })
 export class CompraComponent implements OnInit {
 
-  compra1: Compra[] = [];
+  comprass: Compra[] = [];
 
   public compra: Compra = new Compra();
 
@@ -25,7 +25,7 @@ export class CompraComponent implements OnInit {
 
   public details = {
     numeroFactura: this.generador(),
-    fechafactura: this.generarFechaActual(),
+/*     fechafactura: this.generarFechaActual(), */
     precioCliente: '',
     pxq: ''  //precio por cantidad
   }
@@ -35,19 +35,22 @@ export class CompraComponent implements OnInit {
   public client = {
     nombre: '',
     direccion: '',
-    email: '' 
+    email: ''
   }
 
   /*    compra?: ArrayBuffer; */
 
-
-  constructor(private compraService: CompraService,
-    private loginService: LoginService) { }
+  constructor(private compraService: CompraService/* ,
+    private loginService: LoginService */) { }
 
   ngOnInit(): void {
 
-    const usuarioo = this.loginService.getUser()
-    console.log(usuarioo)
+    this.compraService.getCompra().subscribe(
+      c=>this.comprass=c
+    );
+
+/*     const usuarioo = this.loginService.getUser()
+    console.log(usuarioo) */
 
     //this.downloadPDF();
   }
@@ -105,17 +108,17 @@ export class CompraComponent implements OnInit {
       return total;
     } */
 
-/*   obtenerCompras(): void {
-    this.compraService.getCompra().subscribe(
-      (data) => {
-        this.compra1 = data;
-      },
-      (error) => {
-        console.error(error);
-      }
-    )
-  }
- */
+  /*   obtenerCompras(): void {
+      this.compraService.getCompra().subscribe(
+        (data) => {
+          this.compra1 = data;
+        },
+        (error) => {
+          console.error(error);
+        }
+      )
+    }
+   */
 
 
 }

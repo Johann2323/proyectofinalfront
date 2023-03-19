@@ -1,7 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router, RouterLink } from '@angular/router';
+import { NavigationExtras, Router, RouterLink } from '@angular/router';
 import { CompraService } from 'src/app/services/compra.service';
+import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 import { Compra } from '../compra';
 
@@ -12,13 +13,13 @@ import { Compra } from '../compra';
 })
 export class FormCompraComponent implements OnInit {
 
-   public compra: Compra = new Compra(); 
-/*    public compras: Compra[] = []; */
+  public compra: Compra = new Compra();
+  /*    public compras: Compra[] = []; */
 
-  constructor(private compraService: CompraService, 
+  constructor(private compraService: CompraService,
     private router: Router) { }
-  ngOnInit(): void {
 
+  ngOnInit(): void {
   }
 
 /*   public buy = {
@@ -32,9 +33,14 @@ export class FormCompraComponent implements OnInit {
     this.compraService.crear(this.compra).subscribe(
       (response) => {
         console.log(response);
-        Swal.fire('Compra guardado', 'Usuario registrado con exito en el sistema', 'success');
+        Swal.fire('Compra guardada', 'success');
         this.limpiarFormulario();
-        this.router.navigate(['/app-compra']);
+        const navigationExtras: NavigationExtras = {
+          state: {
+            compra: this.compra
+          }
+        };
+        this.router.navigate(['/app-pagos'], navigationExtras);
       },
       (error) => {
         console.log(error);
@@ -42,16 +48,16 @@ export class FormCompraComponent implements OnInit {
     );
   }
 
-/*   obtenerCompras(): void {
-    this.compraService.getCompra().subscribe(
-      (data) => {
-        this.compras = data;
-      },
-      (error) => {
-        console.error(error);
-      }
-    )
-  } */
+  /*   obtenerCompras(): void {
+      this.compraService.getCompra().subscribe(
+        (data) => {
+          this.compras = data;
+        },
+        (error) => {
+          console.error(error);
+        }
+      )
+    } */
 
   limpiarFormulario(): void {
     this.compra = new Compra();
