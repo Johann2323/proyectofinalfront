@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; // Importar FormsModule
 import Swal from 'sweetalert2';
+import { mostrarcarrito } from '../categorias/mostrarcarrito';
 
 
 @Component({
@@ -16,13 +17,17 @@ import Swal from 'sweetalert2';
 export class CatSuspensoComponent implements OnInit {
   public libros: libros = new libros();
   libros1: libros[] = [];
-  constructor(private libroservice: RegistroLibroService, private router: Router) { }
+  constructor(private libroservice: RegistroLibroService, private router: Router, private mostarr:mostrarcarrito) { }
 
   ngOnInit(): void {
     this.libroservice.getLibros().subscribe(
       libro => this.libros1 = libro
       //libro => this.libros=libro
     );
+  }
+
+  carrito(){
+    this.mostarr.setmostrarcarrito(true);
   }
 
 

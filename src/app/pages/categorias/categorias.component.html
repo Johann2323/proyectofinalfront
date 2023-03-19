@@ -21,7 +21,7 @@
       <app-cat-accion *ngSwitchCase="'accion'"></app-cat-accion>
     </ng-container>
   </div>
-  <div class="contenedor" >
+  <div class="contenedor" *ngIf="mostrarcarrito()">
     <app-carrito-compras></app-carrito-compras>
   </div>
 </div>

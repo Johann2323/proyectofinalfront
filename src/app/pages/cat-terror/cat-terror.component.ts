@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; // Importar FormsModule
 import Swal from 'sweetalert2';
+import { mostrarcarrito } from '../categorias/mostrarcarrito';
 
 @Component({
   selector: 'app-cat-terror',
@@ -18,7 +19,7 @@ export class CatTerrorComponent implements OnInit {
   libs: libros[]=[];
   bus: boolean = true;
   buscarval: boolean = false;
-  constructor(private libroservice: RegistroLibroService, private router: Router) { }
+  constructor(private libroservice: RegistroLibroService, private router: Router, private mostarr:mostrarcarrito) { }
 
   ngOnInit(): void {
     this.libroservice.getLibros().subscribe(
@@ -37,6 +38,9 @@ export class CatTerrorComponent implements OnInit {
         this.buscarval = true;
       }
     )
+  }
+  carrito(){
+    this.mostarr.setmostrarcarrito(true);
   }
 
 }

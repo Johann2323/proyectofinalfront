@@ -38,7 +38,7 @@ export class RegistroAdminComponent implements OnInit {
     if (contra1 == contra2) {
       console.log(this.user);
       if (this.user.username == '' || this.user.username == null) {
-        //Swal.fire('Coloque un usuario', 'Error al crear Uusario', 'warning');
+        Swal.fire('Coloque un usuario', 'Error al crear Uusario', 'warning');
         return;
       }
 
@@ -47,7 +47,7 @@ export class RegistroAdminComponent implements OnInit {
           console.log(data);
           Swal.fire('Usuario guardado', 'Usuario registrado con exito en el sistema', 'success');
         }, (error) => {
-          console.log(error);
+          Swal.fire('Usuario ya registrado', 'Ingresa otro nombre para tu usuario', 'error');
 
         }
       )

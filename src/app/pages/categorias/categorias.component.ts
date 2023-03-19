@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { mostrarcarrito } from './mostrarcarrito';
 import { RouterModule, Routes } from '@angular/router';
 
 @Component({
@@ -9,8 +9,8 @@ import { RouterModule, Routes } from '@angular/router';
 })
 export class CategoriasComponent implements OnInit {
   currentComponent: string = 'fantasia';
-  constructor() { }
-  mostrar:boolean=false;
+  constructor(private mostrarr:mostrarcarrito) { }
+  mostrarcarrito1?:boolean;
   ngOnInit(): void {
   }
   showFantasia() {
@@ -30,6 +30,10 @@ export class CategoriasComponent implements OnInit {
   }
   showAccion() {
     this.currentComponent = 'accion';
+  }
+
+  mostrarcarrito(){
+    return this.mostrarr.getMostrarcarrito();
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { mostrarcarrito } from '../categorias/mostrarcarrito';
 
 @Component({
   selector: 'app-carrito-compras',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarritoComprasComponent implements OnInit {
  
-  constructor() { }
+  constructor(private mostrarr:mostrarcarrito) { }
 
   ngOnInit(): void {
   }
-
+cancelar(){
+  this.mostrarr.setmostrarcarrito(false);
+}
 }
