@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; // Importar FormsModule
 import Swal from 'sweetalert2';
+import { mostrarcarrito } from '../categorias/mostrarcarrito';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit {
   currentComponent: string = 'carrito';
   public libros: libros = new libros();
   libros1: libros[] = [];
-  constructor(private libroservice: RegistroLibroService, private router: Router) { }
+  constructor(private libroservice: RegistroLibroService, private router: Router, private mostrarr:mostrarcarrito) { }
   ngOnInit(): void {
     this.libroservice.getLibros().subscribe(
       libro => this.libros1 = libro
@@ -34,5 +35,12 @@ export class HomeComponent implements OnInit {
     const unMesAtras = new Date();
     unMesAtras.setMonth(unMesAtras.getMonth() - 1);
     return fechaLibro >= unMesAtras && fechaLibro <= hoy;
+  }
+
+  mostrarcarrito(){
+    return this.mostrarr.getMostrarcarrito();
+  }
+  carrito(){
+    this.mostrarr.setmostrarcarrito(true);
   }
 }

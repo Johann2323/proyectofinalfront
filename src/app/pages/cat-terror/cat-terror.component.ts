@@ -30,14 +30,7 @@ export class CatTerrorComponent implements OnInit {
   }
 
   buscarLibxNomb(nombre: String) {
-    this.bus = false;
-    this.libroservice.buscarLibro(nombre).subscribe(
-      librs => {
-        this.libs = librs;
-        console.log(this.libs.length);
-        this.buscarval = true;
-      }
-    )
+   
   }
   carrito(){
     this.mostarr.setmostrarcarrito(true);
