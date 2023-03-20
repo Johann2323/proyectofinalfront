@@ -70,18 +70,18 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Dirección</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Estado</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">E-Mail</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                  <tr *ngFor="let usuario of usuarios1">
+                    <td>{{usuario.id}}</td>
+                    <td>{{usuario.nombre+" "+ usuario.apellido}}</td>
+                    <td>{{usuario.direccion}}</td>
+                    <td>{{usuario.telefono}}</td>
+                    <td>{{usuario.email}}</td>
                   </tr>
                 </tbody>
               </table>

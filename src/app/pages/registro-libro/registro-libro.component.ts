@@ -56,6 +56,8 @@ export class RegistroLibroComponent implements OnInit {
       
       //libro => this.libros=libro
     );
+
+    
     this.buscarval = false;
     this.bus = true;
 

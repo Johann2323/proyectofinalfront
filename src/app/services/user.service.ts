@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import baserUrl from './helper';
 import { LoginService } from './login.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Observable } from 'rxjs';
+import { usuarios } from '../pages/registro-admin/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
-  
+  public usuario1 : usuarios = new usuarios();
+  private urlendpoint: string = 'http://localhost:8080/usuarios/getvendedores';
 
     constructor(private httpClient: HttpClient, private loginService: LoginService) { }
 
@@ -20,7 +22,28 @@ export class UserService {
       return this.httpClient.post(`${baserUrl}/usuarios/admin`,user);
     }
 
-    public obtenerusuario(user:any){
-      return this.httpClient.get(`${baserUrl}/usuarios/allusers`,user);
+    obtenerusuario(): Observable<usuarios[]>{
+      console.log("holiii")
+      const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
+      const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
+      return this.httpClient.get<usuarios[]>(this.urlendpoint,{ headers: httpHeaders });
+      
     }
+
+
+
+
+
+
+    public obtenervendedores(): Observable<usuarios[]>{
+      const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
+    const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
+
+    console.log(httpHeaders+"Holiii x2")
+      return this.httpClient.get<usuarios[]>(`${baserUrl}/usuarios/getvendedores`,{ headers: httpHeaders });
+      
+      
+    }
+
+
 }

@@ -4,7 +4,10 @@ export class usuarios{
     password?: string;
     nombre?: string;
     apellido?: string;
-    direccion?: string;
     email?: string;
-    telefono?: number
+    telefono?: number;
+    direccion?: string;
+    enable?: boolean;
+    perfil?: string
+    
 }

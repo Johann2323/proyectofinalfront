@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { NgModel } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { usuarios } from './usuario';
 
 
 @Component({
@@ -15,21 +16,23 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class RegistroAdminComponent implements OnInit {
 
-  usuario?: ArrayBuffer; 
+  public usuario1 : usuarios = new usuarios();
+  usuarios1: usuarios[]= []
+
   ngOnInit(): void {
-    this.userService.obtenerusuario(this.user).subscribe(
-      ususarios => this.usuario = ususarios,  
-    
+    this.userService.obtenerusuario().subscribe(
+      usuario2 => this.usuarios1 = usuario2
     );
+    console.log(this.usuarios1)
   }
-  public user = {
+  public user: usuarios =  {
     username: '',
     password: '',
     nombre: '',
     apellido: '',
     direccion: '',
     email: '',
-    telefono: ''
+    telefono: 0
   }
   constructor(private userService: UserService) { }
 
@@ -42,7 +45,7 @@ export class RegistroAdminComponent implements OnInit {
         return;
       }
 
-      this.userService.añadirUsuario(this.user).subscribe(
+      this.userService.añadirUsuarioadmin(this.user).subscribe(
         (data) => {
           console.log(data);
           Swal.fire('Usuario guardado', 'Usuario registrado con exito en el sistema', 'success');
