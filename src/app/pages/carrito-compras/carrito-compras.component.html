@@ -15,35 +15,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>0001</td>
-                <td>Halo Series</td>
+              <tr *ngFor="let pedido of pedido1">
+                <td>{{pedido.id}}</td>
+                <td>{{pedido.id_libro}}</td>
                 <td>20,00</td>
               </tr>
 
-              <tr>
-                  <td>0001</td>
-                  <td>Halo Series</td>
-                  <td>20,00</td>
-                </tr>
-
-                <tr>
-                  <td>0001</td>
-                  <td>Halo Series</td>
-                  <td>20,00</td>
-                </tr>
-
-                <tr>
-                  <td>0001</td>
-                  <td>Halo Series</td>
-                  <td>20,00</td>
-                </tr>
-
-                <tr>
-                  <td>0001</td>
-                  <td>Halo Series</td>
-                  <td>20,00</td>
-                </tr>
+            
             </tbody>
           </table>
           Total:
