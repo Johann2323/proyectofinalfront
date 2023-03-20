@@ -17,6 +17,9 @@ export class CatFantasiaComponent implements OnInit {
   currentComponent: string = 'carrito';
   public libros: libros = new libros();
   libros1: libros[] = [];
+  libs: libros[]=[];
+  bus: boolean = true;
+  buscarval: boolean = false;
   constructor(private libroservice: RegistroLibroService, private router: Router, private mostarr:mostrarcarrito) { }
 
   ngOnInit(): void {
@@ -30,5 +33,22 @@ export class CatFantasiaComponent implements OnInit {
   }
   carrito(){
     this.mostarr.setmostrarcarrito(true);
+  }
+
+  onKeydownEvent(event: KeyboardEvent, titulo: String): void {
+    if (titulo == "") {
+      this.ngOnInit();
+    }
+  }
+
+  buscarLibxNomb(nombre: String) {
+    this.bus = false;
+    this.libroservice.buscarLibro(nombre).subscribe(
+      librs => {
+        this.libs = librs;
+        console.log(this.libs.length+"yyyyyyyyyyyyyy");
+        this.buscarval = true;
+      },
+    )
   }
 }

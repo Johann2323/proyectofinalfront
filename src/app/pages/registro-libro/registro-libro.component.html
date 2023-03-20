@@ -78,7 +78,7 @@
                         <option value="suspenso">Suspenso</option>
                         <option value="historico" >Hístorico</option>
                         <option value="drama"  >Drama</option>
-                        <option value="drama"  >Terror</option>
+                        <option value="terror"  >Terror</option>
                         <option value="accion"  >Accion</option>
                       </select>
                 </div><br><br><br>
@@ -149,7 +149,7 @@
                 <td>{{ libro.editorial }}</td>
                 <td>{{ libro.descripcion }}</td>
                 <td>{{ libro.categoria }}</td>
-                <td>{{ libro.fechacreacion }}</td>
+                <td>{{ libro.fechacreacion| date:'shortDate' }}</td>
                 <td>{{ libro.precio }}$</td>
                 <td>{{ libro.stock }}</td>
                 <td>

@@ -62,7 +62,8 @@ export class RegistroLibroService {
 
     const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
     const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
-    let res = this.urlBuscarLibro + '/' + nombre;
+    let res = this.urlBuscarLibro + '/' +nombre;
+    console.log(res)
     return this.http.get<libros[]>(res, { headers: httpHeaders });
   }
 
