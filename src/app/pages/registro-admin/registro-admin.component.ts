@@ -49,11 +49,13 @@ export class RegistroAdminComponent implements OnInit {
         (data) => {
           console.log(data);
           Swal.fire('Usuario guardado', 'Usuario registrado con exito en el sistema', 'success');
+          window.location.reload()
         }, (error) => {
           Swal.fire('Usuario ya registrado', 'Ingresa otro nombre para tu usuario', 'error');
 
         }
       )
+      
     } else {
       Swal.fire('Error', 'Contraseñas no coinciden', 'error');
     }

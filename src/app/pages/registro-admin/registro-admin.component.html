@@ -37,6 +37,12 @@
               </div><br><br><br>
             </div>
             <div class="form-group row">
+              <label for="staticEmail" class="col-sm-3 col-form-label">Telefono</label>
+              <div class="col-sm-9">
+                <input type="number"  [(ngModel)] = "user.telefono" class="form-control"  id="staticTelefono"  name="telefono" placeholder="Ingerse su Telefono" required>
+              </div><br><br><br>
+            </div>
+            <div class="form-group row">
               <label for="inputPassword" class="col-sm-3 col-form-label">Contraseña</label>
               <div class="col-sm-9">
                 <input type="password" [(ngModel)] = "user.password" class="form-control" #contra1 id="inputPassword" name="contraseña" placeholder="Ingresa tu contrseña" required>
