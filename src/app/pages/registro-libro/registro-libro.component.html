@@ -99,7 +99,9 @@
 
                 <button *ngIf="!validaredit" type="submit" id="guardar" class="boton btn-primary ">Crear</button>
           </form>
-          <button *ngIf="validaredit" (click)="editarlibro(id.value,libros)" type="button" id="editar" class="boton btn-primary ">Editar</button>
+          <button *ngIf="validaredit" (click)="editarlibro(id.value,libros)" type="button" id="editar" class="boton btn-primary ">Editar</button><hr>
+          <button *ngIf="validaredit"  class="btn btn-outline-danger" (click)="eliminar(id.value)"
+                  ><i class="far fa-trash-alt"></i> Eliminar </button>
           
         </div>
       </div>
@@ -160,8 +162,7 @@
                 <td>
                   <button class=" btn btn-outline-primary" 
                   style="font-size: small;" (click)="editar(libro)"><i class="far fa-edit"></i></button><br>
-                  <button class="btn btn-outline-danger " routerLink="/app-inicio-sesion"
-                  style="font-size: small;"><i class="far fa-trash-alt"></i></button>
+                  
                 </td>
               </tr>
             </tbody>

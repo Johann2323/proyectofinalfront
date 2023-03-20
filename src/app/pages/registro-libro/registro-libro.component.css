@@ -10,6 +10,16 @@
     margin-left: 50%;
     transform: translateX(-50%);
   }
+
+  .btn{
+    border-radius: 5px;
+    text-align: center;
+    
+    
+    width: 110px; /* Para que no se rompa en dos líneas, y lo translade tal cual. */
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
   
   input[type="file"] {
   display: none;

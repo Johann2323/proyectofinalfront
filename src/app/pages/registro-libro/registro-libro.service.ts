@@ -13,6 +13,7 @@ export class RegistroLibroService {
   private urlendpoint2: string = 'http://localhost:8080/api/cursos/getlibros';
   private urlBuscarLibro: string = 'http://localhost:8080/api/cursos/buscarxnombre';
   private urleditarlibro: string = 'http://localhost:8080/api/cursos/editarLibro';
+  private urlemliminar: string = 'http://localhost:8080/api/cursos/eliminarLibro';
 
 
   
@@ -43,28 +44,27 @@ export class RegistroLibroService {
   obtenerLibro(nombre: String): Observable<libros[]> {
     const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
     const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
-
-
-
     return this.http.get<libros[]>(this.urlendpoint1, { headers: httpHeaders });
   }
   getLibros(): Observable<libros[]> {
     const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
     const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
-
-
-
-
     return this.http.get<libros[]>(this.urlendpoint2, { headers: httpHeaders });
   }
 
-  buscarLibro(nombre: String): Observable<libros[]> {
+  buscarLibro(titulo: String): Observable<libros[]> {
 
-    const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
-    const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
-    let res = this.urlBuscarLibro + '/' +nombre;
+    
+    let res = this.urlBuscarLibro+'/'+titulo;
     console.log(res)
-    return this.http.get<libros[]>(res, { headers: httpHeaders });
+    return this.http.get<libros[]>(res);
+  }
+
+  eliminarlibro(id: number): Observable<void> {
+    const token = this.loginService.getToken(); // Obtener el token del localStorage
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${this.urlemliminar}/${id}`; // URL para eliminar el libro con el ID correspondiente
+    return this.http.delete<void>(url, { headers });
   }
 
   uploadFile(file: File) {

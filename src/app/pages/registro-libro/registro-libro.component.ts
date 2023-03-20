@@ -115,7 +115,7 @@ export class RegistroLibroComponent implements OnInit {
 editarlibro(id:string, libro:any){
 
   const numString = id;
-const num = parseInt(numString); // num es igual a 42
+  const num = parseInt(numString); // num es igual a 42
 
 console.log(num)
   this.libroservice.update(num,this.libros).subscribe(
@@ -174,13 +174,36 @@ console.log(num)
 
   }
 
-  
+  eliminar(id: string) {
+    const numString = id;
+    const num = parseInt(numString); // num es igual a 42
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Esta acción no se puede deshacer',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.libroservice.eliminarlibro(num).subscribe(
+          () => {
+            Swal.fire('Libro eliminado', '', 'success');
+            window.location.reload();
+          },
+          (error) => {
+            Swal.fire('Error al eliminar el libro', error.message, 'error');
+          }
+        );
+      }
+    });
+  }
 
   
 
-  buscarLibxNomb(nombre: String) {
+  buscarLibxNomb(titulo: String) {
     this.bus = false;
-    this.libroservice.buscarLibro(nombre).subscribe(
+    this.libroservice.buscarLibro(titulo).subscribe(
       librs => {
         this.libs = librs;
         console.log(this.libs.length);

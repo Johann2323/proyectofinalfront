@@ -26,41 +26,45 @@ const routes: Routes = [
     path : 'app-stock',
     component : StockComponent,
     pathMatch : 'full',
-    canActivate:[NormalGuard]
+    canActivate:[AdminGuard]
   },
 
   {
     path : 'app-carrito-compras',
     component : CarritoComprasComponent,
     pathMatch : 'full',
-    canActivate:[NormalGuard]
+    canActivate:[AdminGuard]
   },
   {
     path : 'app-pagos',
     component : PagosComponent,
     pathMatch : 'full',
+    canActivate:[AdminGuard]
   },
   {
     path : 'app-compra',
     component : CompraComponent,
-    pathMatch : 'full'
+    pathMatch : 'full',
+    canActivate:[AdminGuard]
   },
   {
     path : 'app-form-compra',
     component : FormCompraComponent,
-    pathMatch : 'full'
+    pathMatch : 'full',
+    canActivate:[AdminGuard]
   },
 
   {
     path : 'app-stock',
     component : StockComponent,
     pathMatch : 'full',
-    canActivate:[NormalGuard]
+    canActivate:[AdminGuard]
   },
   {
     path : 'app-registro-admin',
     component : RegistroAdminComponent,
     pathMatch : 'full',
+    canActivate:[AdminGuard]
    
   },
   
@@ -68,7 +72,7 @@ const routes: Routes = [
     path : 'app-registro-libro',
     component : RegistroLibroComponent,
     pathMatch : 'full',
-    canActivate:[NormalGuard]
+    canActivate:[AdminGuard]
   },
   {
     path : 'signup',
