@@ -17,7 +17,10 @@ export class SignupComponent implements OnInit {
     nombre: '',
     apellido: '',
     email: '',
-    telefono: ''
+    telefono: '',
+    direccion:'',
+    enabled:true,
+    perfil:''
   }
 
   constructor(private userService: UserService, private snack: MatSnackBar, private router:Router) { }
@@ -29,11 +32,7 @@ export class SignupComponent implements OnInit {
     if (contra1 == contra2) {
       console.log(this.user);
       if (this.user.username == '' || this.user.username == null) {
-        this.snack.open('El nombre de usuario es requerido !!', 'Aceptar', {
-          duration: 3000,
-          verticalPosition: 'top',
-          horizontalPosition: 'right'
-        });
+        Swal.fire('Usuario requerido', 'El campo username es obligatorio', 'warning');
         return;
       }
 
@@ -44,9 +43,7 @@ export class SignupComponent implements OnInit {
           this.router.navigate(['/app-login']);
         }, (error) => {
           console.log(error);
-          this.snack.open('Ha ocurrido un error en el sistema !!', 'Aceptar', {
-            duration: 3000
-          });
+          Swal.fire('Error', 'Usuario no registrado', 'error');
         }
       )
     }else{
