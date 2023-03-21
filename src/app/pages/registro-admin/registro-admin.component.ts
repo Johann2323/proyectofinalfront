@@ -71,22 +71,6 @@ export class RegistroAdminComponent implements OnInit {
     }
   }
 
-  buscarLibxNomb(nombre: String) {
-    this.bus = false;
-    this.userService.buscar(nombre).subscribe(
-      data => {
-        this.usuariosbus = data;
-        console.log(data);
-        if (this.usuariosbus != null) {
-          this.usuariosbus.forEach(element => {
-            console.log(element + 'nnnnn');
-
-          });
-          this.buscarval = true;
-        }else{
-          console.log("array cero")
-        }
-      },
-    )
-  }
+  
+  
 }

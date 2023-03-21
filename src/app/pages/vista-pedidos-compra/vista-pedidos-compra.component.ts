@@ -8,12 +8,12 @@ import { pedido } from '../cat-accion/pedido';
   styleUrls: ['./vista-pedidos-compra.component.css']
 })
 export class VistaPedidosCompraComponent {
-  pedidos: pedido[] = [];
+  pedido1: pedido[]=[];
   constructor(private pedidoService: PedidoService) { }
   ngOnInit(): void {
     this.pedidoService.getpedido().subscribe(
-      data => this.pedidos = data
+      pedido2=> this.pedido1 = pedido2
     );
-    console.log(this.pedidos.length)
+    console.log(this.pedido1.length)
   }
 }
