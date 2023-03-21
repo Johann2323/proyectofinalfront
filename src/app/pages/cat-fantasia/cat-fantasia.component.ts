@@ -11,13 +11,14 @@ import { usuarios } from '../registro-admin/usuario';
 import { pedido } from '../cat-accion/pedido';
 import { LoginService } from 'src/app/services/login.service';
 import { PedidoService } from '../carrito-compras/pedido.service';
+import { CarritoComprasComponent } from '../carrito-compras/carrito-compras.component';
 
 @Component({
   selector: 'app-cat-fantasia',
   templateUrl: './cat-fantasia.component.html',
   styleUrls: ['./cat-fantasia.component.css']
 })
-export class CatFantasiaComponent implements OnInit {
+export class CatFantasiaComponent  {
   currentComponent: string = 'carrito';
   public libros: libros = new libros();
   libros1: libros[] = [];
@@ -40,8 +41,8 @@ export class CatFantasiaComponent implements OnInit {
   showCarrito() {
     this.currentComponent = 'carrito';
   }
-  carrito(id?: number, titulo?:string, precio?:number) {
-    this.mostarr.setmostrarcarrito(true);
+  carrito(id?: number, titulo?: string, precio?: number) {
+    
 
     const usuarioo = this.loginService.getUser()
     console.log(usuarioo)
@@ -51,14 +52,16 @@ export class CatFantasiaComponent implements OnInit {
     this.Pedidos.estado = "Pendiente";
     this.Pedidos.fecha_pedido = this.CurrentDate;
     this.Pedidos.fecha_pedido = this.CurrentDate;
-      this.Pedidos.nombre = usuarioo.nombre;
-      this.Pedidos.titulo = titulo
-      this.Pedidos.precion= precio
+    this.Pedidos.nombre = usuarioo.nombre;
+    this.Pedidos.titulo = titulo
+    this.Pedidos.precion = precio
 
     this.pedidoService.crearPedido(this.Pedidos).subscribe(
       (data) => {
         console.log(data);
+        
         Swal.fire('Añadido al carrio', 'Revise su Carrito de Compras', 'success');
+        this.mostarr.setmostrarcarrito(true);
 
       }, (error) => {
         Swal.fire('Error al Añdir al Carrito', 'Ha Ocurrido Algo', 'error');
