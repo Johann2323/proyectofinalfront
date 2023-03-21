@@ -39,7 +39,7 @@ export class CatAccionComponent implements OnInit {
   showCarrito() {
     this.currentComponent = 'carrito';
   }
-  carrito(id?: number){
+  carrito(id?: number, titulo?:string, precio?:number){
     this.mostarr.setmostrarcarrito(true);
     window.location.reload
 
@@ -47,9 +47,12 @@ export class CatAccionComponent implements OnInit {
         console.log(usuarioo) 
         this.user2=usuarioo
       this.Pedidos.id_libro = id;
-      this.Pedidos.id_usuario = usuarioo.id;
+      this.Pedidos.id_usuario = usuarioo.id; 
       this.Pedidos.estado = "Pendiente";
       this.Pedidos.fecha_pedido = this.CurrentDate;
+      this.Pedidos.nombre = usuarioo.nombre;
+      this.Pedidos.titulo = titulo
+      this.Pedidos.precion= precio
 
       this.pedidoService.crearPedido(this.Pedidos).subscribe(
         (data) => {

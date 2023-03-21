@@ -35,7 +35,7 @@ export class CatDramaComponent implements OnInit {
 
     this.CurrentDate = new Date();
   }
-  carrito(id?:number){
+  carrito(id?:number, titulo?:string, precio?:number){
     this.mostarr.setmostrarcarrito(true);
 
     const usuarioo = this.loginService.getUser()
@@ -45,6 +45,9 @@ export class CatDramaComponent implements OnInit {
   this.Pedidos.id_usuario = usuarioo.id;
   this.Pedidos.estado = "Pendiente";
   this.Pedidos.fecha_pedido = this.CurrentDate;
+  this.Pedidos.nombre = usuarioo.nombre;
+  this.Pedidos.titulo = titulo
+  this.Pedidos.precion= precio
 
   this.pedidoService.crearPedido(this.Pedidos).subscribe(
     (data) => {

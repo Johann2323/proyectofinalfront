@@ -11,24 +11,28 @@ import { PedidoService } from './pedido.service';
   styleUrls: ['./carrito-compras.component.css']
 })
 export class CarritoComprasComponent implements OnInit {
-  public libros: libros = new libros();
+  public libros2: libros = new libros();
+  textos: libros[]=[];
   libros1: libros[] = [];
+  id?:any[] = []
 public pedidos : pedido = new pedido();
 pedido1: pedido[]=[];
+pedido3: pedido[]=[];
 
   constructor(private mostrarr:mostrarcarrito, private peidoService: PedidoService, private libroService: RegistroLibroService) { }
 
   ngOnInit(): void {
-    this.peidoService.getpedido().subscribe(
-      pedido2=> this.pedido1 = pedido2
-    );
-
-    const libroo = this.libroService.getLibros().subscribe(
-      libro => this.libros1 = libro,
-    );
-    
+    this.peidoService.getpedido().subscribe((response)=>{
+       this.pedido1 = response
+       console.log(response);
+       
+      
+    } 
+    )
   }
 cancelar(){
   this.mostrarr.setmostrarcarrito(false);
+
+ 
 }
 }

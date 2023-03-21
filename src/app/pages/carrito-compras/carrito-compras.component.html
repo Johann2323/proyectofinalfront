@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="card" style="width:300px;" >
+      <div >
         <div class="card-body" style="height: 500px; overflow: auto;">
           <h5 class="card-title" style="text-align: center;" >Carrito de Compras</h5><br>
           <form class="d-flex buscar" role="search">
@@ -17,8 +18,8 @@
             <tbody>
               <tr *ngFor="let pedido of pedido1">
                 <td>{{pedido.id}}</td>
-                <td>{{pedido.id_libro}}</td>
-                <td>20,00</td>
+                <td>{{pedido.titulo}}</td>
+                <td>{{pedido.precion}}</td>
               </tr>
 
             
@@ -30,6 +31,7 @@
             Pago</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button type="submit" class="boton btn " (click)="cancelar()" style="background-color:#F1D9CE; font-size: small;">Cancelar</button>
         </div>
+      </div>
       </div>
     </div>  
   </div>
