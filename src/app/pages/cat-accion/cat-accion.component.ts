@@ -24,6 +24,9 @@ export class CatAccionComponent implements OnInit {
   public user2: usuarios = new usuarios();
   public Pedidos: pedido = new pedido();
   CurrentDate?: Date;
+  libs: libros[] = [];
+  bus: boolean = true;
+  buscarval: boolean = false;
  
   constructor(private libroservice: RegistroLibroService, private router: Router, private mostarr:mostrarcarrito, private loginService:LoginService, private pedidoService: PedidoService) { }
 
@@ -66,5 +69,23 @@ export class CatAccionComponent implements OnInit {
       )
 
 
+  }
+  onKeydownEvent(event: KeyboardEvent, titulo: String): void {
+    if (titulo == "") {
+      this.ngOnInit();
+    }
+    this.buscarval = false;
+    this.bus = true;
+  }
+
+  buscarLibxNomb(nombre: String) {
+    this.bus = false;
+    this.libroservice.buscarLibro(nombre).subscribe(
+      librs => {
+        this.libs = librs;
+        console.log(this.libs.length + "yyyyyyyyyyyyyy");
+        this.buscarval = true;
+      },
+    )
   }
 }

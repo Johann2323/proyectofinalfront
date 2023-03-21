@@ -1,26 +1,47 @@
-<<div>
+<div>
   <h3>Acción</h3>
   <br>
   <form class="d-flex buscar" role="search">
     <input class="form-control me-1" type="search" placeholder="Buscar" aria-label="Buscar"
-      style=" border-color: #F1D9CE; height:40px;" />
-    <button class="btn" type="submit">
+    (keyup)="onKeydownEvent($event, buscarlibro.value)" #buscarlibro style=" border-color: #F1D9CE; height:40px;" />
+    <button class="btn" type="submit" (click)="buscarLibxNomb(buscarlibro.value)">
       <img src="https://cdn-icons-png.flaticon.com/512/3686/3686871.png" style="width: 40px; height: 40px;">
     </button>
   </form><br>
-  <div class="tarjeta">
+  <div class="tarjeta" *ngIf=bus>
   <div *ngFor="let libro of libros1" >
     <div *ngIf="libro.categoria === 'accion'">
       <div class="row">
         <div class="col-sm-6">
           <div class="card"
-            style="border-color: #BE6134;  width: 18rem; flex-basis: calc(33.33% - 10px); margin-bottom: 10px; text-align: center;">
-            <img src="{{libro.imagenget}}" class="card-img-top" alt="...">
+            style="border-color: #BE6134;  height: 20rem;  width: 18rem; margin-left: 4px; flex-basis: calc(33.33% - 10px); margin-bottom: 10px; text-align: center;">
+            <img src="{{libro.imagenget}}" class="card-img-top" style="height: 10rem;  width: 17rem; margin: 7px;">
             <div class="card-body">
               <h5 class="card-title" style="color:coral; font-size: 30px;"> {{ libro.titulo }}</h5>
               <li class="card list-group-item">Autor: {{ libro.autor }}</li>
               <li class="card list-group-item">Precio: <strong>{{ libro.precio }}</strong></li>
               <button (click)="carrito(libro.id, libro.titulo, libro.precio) " class="boton btn " style="margin-right: 10px; background-color:#BE6134; font-size: small; color: white;">Añadir al carrito</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><br>
+</div>
+<div class="tarjeta" *ngIf="buscarval==true">
+  <div *ngFor="let lib of libs">
+    <div *ngIf="lib.categoria === 'accion'">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card" style="border-color: #BE6134;  height: 20rem;  width: 18rem; flex-basis: calc(33.33% - 10px); margin-bottom: 10px; margin-left: 2%;  text-align: center;">
+            <img src="{{lib.imagenget}}" style="height: 10rem;  width: 17rem;" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title" style="color:coral; font-size: 30px;"> {{ lib.titulo }}</h5>
+              <li class="card list-group-item">Autor: {{ lib.autor }}</li>
+              <li class="card list-group-item">Precio: <strong>{{ lib.precio }}</strong></li>
+              <button (click)="carrito()" class="boton btn "
+                style="margin-right: 10px; background-color:#BE6134; font-size: small; color: white;">Añadir al
+                carrito</button>
             </div>
           </div>
         </div>

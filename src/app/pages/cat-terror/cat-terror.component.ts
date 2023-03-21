@@ -20,14 +20,14 @@ import { PedidoService } from '../carrito-compras/pedido.service';
 export class CatTerrorComponent implements OnInit {
   public libros: libros = new libros();
   libros1: libros[] = [];
-  libs: libros[]=[];
+  libs: libros[] = [];
   bus: boolean = true;
   buscarval: boolean = false;
 
   public user2: usuarios = new usuarios();
   public Pedidos: pedido = new pedido();
   CurrentDate?: Date;
-  constructor(private libroservice: RegistroLibroService, private router: Router, private mostarr:mostrarcarrito,private loginService:LoginService, private pedidoService: PedidoService) { }
+  constructor(private libroservice: RegistroLibroService, private router: Router, private mostarr: mostrarcarrito, private loginService: LoginService, private pedidoService: PedidoService) { }
 
   ngOnInit(): void {
     this.libroservice.getLibros().subscribe(
@@ -38,37 +38,51 @@ export class CatTerrorComponent implements OnInit {
 
     this.CurrentDate = new Date();
   }
-
-  buscarLibxNomb(nombre: String) {
-   
-  }
-  carrito(id?:number, titulo?:string, precio?:number){
+  carrito(id?: number, titulo?: string, precio?: number) {
     this.mostarr.setmostrarcarrito(true);
 
     const usuarioo = this.loginService.getUser()
-    console.log(usuarioo) 
-    this.user2=usuarioo
-  this.Pedidos.id_libro = id;
-  this.Pedidos.id_usuario = usuarioo.id;
-  this.Pedidos.estado = "Pendiente";
-  this.Pedidos.fecha_pedido = this.CurrentDate;
+    console.log(usuarioo)
+    this.user2 = usuarioo
+    this.Pedidos.id_libro = id;
+    this.Pedidos.id_usuario = usuarioo.id;
+    this.Pedidos.estado = "Pendiente";
+    this.Pedidos.fecha_pedido = this.CurrentDate;
 
-  this.Pedidos.nombre = usuarioo.nombre;
-  this.Pedidos.titulo = titulo
-  this.Pedidos.precion= precio
+    this.Pedidos.nombre = usuarioo.nombre;
+    this.Pedidos.titulo = titulo
+    this.Pedidos.precion = precio
 
 
-  this.pedidoService.crearPedido(this.Pedidos).subscribe(
-    (data) => {
-      console.log(data);
-      Swal.fire('Añadido al carrio', 'Revise su Carrito de Compras', 'success');
-      
-    }, (error) => {
-      Swal.fire('Error al Añdir al Carrito', 'Ha Ocurrido Algo', 'error');
+    this.pedidoService.crearPedido(this.Pedidos).subscribe(
+      (data) => {
+        console.log(data);
+        Swal.fire('Añadido al carrio', 'Revise su Carrito de Compras', 'success');
 
+      }, (error) => {
+        Swal.fire('Error al Añdir al Carrito', 'Ha Ocurrido Algo', 'error');
+
+      }
+    )
+
+  }
+  onKeydownEvent(event: KeyboardEvent, titulo: String): void {
+    if (titulo == "") {
+      this.ngOnInit();
     }
-  )
+    this.buscarval = false;
+    this.bus = true;
+  }
 
+  buscarLibxNomb(nombre: String) {
+    this.bus = false;
+    this.libroservice.buscarLibro(nombre).subscribe(
+      librs => {
+        this.libs = librs;
+        console.log(this.libs.length + "yyyyyyyyyyyyyy");
+        this.buscarval = true;
+      },
+    )
   }
 
 }

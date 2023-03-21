@@ -25,7 +25,6 @@ export class VistaPedidosCompraComponent {
 
     this.compraService.getCompra().subscribe((response) => {
       this.compra1 = response
-      console.log(this.compra1)
     });
   }
   onKeydownEvent(event: KeyboardEvent, titulo: String): void {
@@ -40,7 +39,7 @@ export class VistaPedidosCompraComponent {
     this.pedidoService.buscar(nombre).subscribe(
       data => {console.log(data)
         this.pedidobus = data;
-        
+        console.log(data)
         this.buscarval=true;
       },
     )
