@@ -21,14 +21,14 @@ export class CatFantasiaComponent implements OnInit {
   currentComponent: string = 'carrito';
   public libros: libros = new libros();
   libros1: libros[] = [];
-  libs: libros[]=[];
+  libs: libros[] = [];
   bus: boolean = true;
   buscarval: boolean = false;
 
   public user2: usuarios = new usuarios();
   public Pedidos: pedido = new pedido();
   CurrentDate?: Date;
-  constructor(private libroservice: RegistroLibroService, private router: Router, private mostarr:mostrarcarrito,private loginService:LoginService, private pedidoService: PedidoService) { }
+  constructor(private libroservice: RegistroLibroService, private router: Router, private mostarr: mostrarcarrito, private loginService: LoginService, private pedidoService: PedidoService) { }
 
   ngOnInit(): void {
     this.libroservice.getLibros().subscribe(
@@ -40,27 +40,27 @@ export class CatFantasiaComponent implements OnInit {
   showCarrito() {
     this.currentComponent = 'carrito';
   }
-  carrito(id?: number){
+  carrito(id?: number) {
     this.mostarr.setmostrarcarrito(true);
 
     const usuarioo = this.loginService.getUser()
-    console.log(usuarioo) 
-    this.user2=usuarioo
-  this.Pedidos.id_libro = id;
-  this.Pedidos.id_usuario = usuarioo.id;
-  this.Pedidos.estado = "Pendiente";
-  this.Pedidos.fecha_pedido = this.CurrentDate;
+    console.log(usuarioo)
+    this.user2 = usuarioo
+    this.Pedidos.id_libro = id;
+    this.Pedidos.id_usuario = usuarioo.id;
+    this.Pedidos.estado = "Pendiente";
+    this.Pedidos.fecha_pedido = this.CurrentDate;
 
-  this.pedidoService.crearPedido(this.Pedidos).subscribe(
-    (data) => {
-      console.log(data);
-      Swal.fire('Añadido al carrio', 'Revise su Carrito de Compras', 'success');
-      
-    }, (error) => {
-      Swal.fire('Error al Añdir al Carrito', 'Ha Ocurrido Algo', 'error');
+    this.pedidoService.crearPedido(this.Pedidos).subscribe(
+      (data) => {
+        console.log(data);
+        Swal.fire('Añadido al carrio', 'Revise su Carrito de Compras', 'success');
 
-    }
-  )
+      }, (error) => {
+        Swal.fire('Error al Añdir al Carrito', 'Ha Ocurrido Algo', 'error');
+
+      }
+    )
 
   }
 
@@ -68,6 +68,8 @@ export class CatFantasiaComponent implements OnInit {
     if (titulo == "") {
       this.ngOnInit();
     }
+    this.buscarval = false;
+    this.bus = true;
   }
 
   buscarLibxNomb(nombre: String) {
@@ -75,7 +77,7 @@ export class CatFantasiaComponent implements OnInit {
     this.libroservice.buscarLibro(nombre).subscribe(
       librs => {
         this.libs = librs;
-        console.log(this.libs.length+"yyyyyyyyyyyyyy");
+        console.log(this.libs.length + "yyyyyyyyyyyyyy");
         this.buscarval = true;
       },
     )

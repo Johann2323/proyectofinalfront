@@ -16,8 +16,11 @@ import { usuarios } from './usuario';
 })
 export class RegistroAdminComponent implements OnInit {
 
-  public usuario1 : usuarios = new usuarios();
-  usuarios1: usuarios[]= []
+  public usuario1: usuarios = new usuarios();
+  usuarios1: usuarios[] = [];
+  usuariosbus: usuarios[] = [];
+  bus: boolean = true;
+  buscarval: boolean = false;
 
   ngOnInit(): void {
     this.userService.obtenerusuario().subscribe(
@@ -25,7 +28,7 @@ export class RegistroAdminComponent implements OnInit {
     );
     console.log(this.usuarios1)
   }
-  public user: usuarios =  {
+  public user: usuarios = {
     username: '',
     password: '',
     nombre: '',
@@ -35,6 +38,13 @@ export class RegistroAdminComponent implements OnInit {
     telefono: 0
   }
   constructor(private userService: UserService) { }
+  onKeydownEvent(event: KeyboardEvent, titulo: String): void {
+    if (titulo == "") {
+      this.ngOnInit();
+    }
+    this.buscarval = false;
+    this.bus = true;
+  }
 
   formSubmit(contra1: string, contra2: string) {
     console.log(contra1, contra2)
@@ -55,9 +65,28 @@ export class RegistroAdminComponent implements OnInit {
 
         }
       )
-      
+
     } else {
       Swal.fire('Error', 'Contraseñas no coinciden', 'error');
     }
+  }
+
+  buscarLibxNomb(nombre: String) {
+    this.bus = false;
+    this.userService.buscar(nombre).subscribe(
+      data => {
+        this.usuariosbus = data;
+        console.log(data);
+        if (this.usuariosbus != null) {
+          this.usuariosbus.forEach(element => {
+            console.log(element + 'nnnnn');
+
+          });
+          this.buscarval = true;
+        }else{
+          console.log("array cero")
+        }
+      },
+    )
   }
 }
