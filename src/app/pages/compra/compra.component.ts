@@ -6,6 +6,9 @@ import { LoginService } from 'src/app/services/login.service';
 import Swal from 'sweetalert2';
 import { Compra } from './compra';
 import { formatDate } from '@angular/common';
+import { RegistroLibroService } from '../registro-libro/registro-libro.service';
+import { libros } from '../registro-libro/libros';
+import { usuarios } from '../registro-admin/usuario';
 
 //import jsPDF from 'jspdf';
 //import html2canvas from 'html2canvas';
@@ -18,39 +21,38 @@ import { formatDate } from '@angular/common';
 export class CompraComponent implements OnInit {
 
   comprass: Compra[] = [];
+  libross: libros[] = [];
 
-  public compra: Compra = new Compra();
 
-
+  public libro2: libros = new libros();
+  public user2: usuarios = new usuarios();
 
   public details = {
     numeroFactura: this.generador(),
-/*     fechafactura: this.generarFechaActual(), */
-    precioCliente: '',
-    pxq: ''  //precio por cantidad
+    calculo: ''
   }
 
-  usuario?: ArrayBuffer;
 
-  public client = {
-    nombre: '',
-    direccion: '',
-    email: ''
-  }
+  constructor(private compraService: CompraService,
+    private libroService: RegistroLibroService,
+    private loginService: LoginService) { }
 
-  /*    compra?: ArrayBuffer; */
 
-  constructor(private compraService: CompraService/* ,
-    private loginService: LoginService */) { }
 
   ngOnInit(): void {
 
-    this.compraService.getCompra().subscribe(
-      c=>this.comprass=c
-    );
+       this.compraService.getCompra().subscribe(
+      c => this.comprass = c
+    )  
+       this.libroService.getLibros().subscribe(
+      c => this.libross = c
+    );   
+ 
 
-/*     const usuarioo = this.loginService.getUser()
-    console.log(usuarioo) */
+       const usuarioo = this.loginService.getUser()
+        console.log(usuarioo) 
+        this.user2=usuarioo;
+
 
     //this.downloadPDF();
   }
@@ -92,33 +94,29 @@ export class CompraComponent implements OnInit {
     return factura;
   }
 
-  generarFechaActual(): string {
-    const fechaActual = new Date();
-    const year = fechaActual.getFullYear();
-    const month = ('0' + (fechaActual.getMonth() + 1)).slice(-2);
-    const day = ('0' + fechaActual.getDate()).slice(-2);
-    return `${year}-${month}-${day}`;
-  }
-
-  /*   calcularTotal(): number {
-      let total = 0;
-      for (let i = 0; i < this.items.length; i++) {
-        total += this.items[i].precio * this.items[i].cantidad;
-      }
-      return total;
+  /*   generarFechaActual(): string {
+      const fechaActual = new Date();
+      const year = fechaActual.getFullYear();
+      const month = ('0' + (fechaActual.getMonth() + 1)).slice(-2);
+      const day = ('0' + fechaActual.getDate()).slice(-2);
+      return `${year}-${month}-${day}`;
     } */
 
-  /*   obtenerCompras(): void {
-      this.compraService.getCompra().subscribe(
-        (data) => {
-          this.compra1 = data;
-        },
-        (error) => {
-          console.error(error);
-        }
-      )
+
+ 
+/*   public totales: number = 0;
+
+  calculossss(): void {
+    for (let i = 0; i < this.comprass.length; i++) {
+      const libro = this.libross[i];
+      const compraa = this.comprass[i];
+      if (libro && compraa && typeof compraa.total === 'number' && typeof libro.precio === 'number') {
+        this.totales += compraa.total * libro.precio;
+      }
     }
-   */
+  } 
+ */
+
 
 
 }

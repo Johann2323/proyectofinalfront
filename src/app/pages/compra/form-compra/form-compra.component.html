@@ -18,6 +18,39 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="direcion" class="col-sm-3 col-form-label">Nombre </label>
+                            <div class="col-sm-9">
+                                <input name="direccion" [(ngModel)]="compra.nombre" type="text" class="form-control"
+                                    placeholder="Escriba su nombre" required>
+                                <div *ngIf="!compra.nombre" class="text-danger">Falta completar este campo</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="direcion" class="col-sm-3 col-form-label">Titulo del libro</label>
+                            <div class="col-sm-9">
+                                <input name="direccion" [(ngModel)]="compra.titulo" type="text" class="form-control"
+                                    placeholder="titulo-libro" required>
+                                <div *ngIf="!compra.titulo" class="text-danger">Falta completar este campo</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="direcion" class="col-sm-3 col-form-label">Direccion</label>
+                            <div class="col-sm-9">
+                                <input name="direccion" [(ngModel)]="compra.direccion" type="text" class="form-control"
+                                    placeholder="Escriba direccion" required>
+                                <div *ngIf="!compra.direccion" class="text-danger">Falta completar este campo</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="direcion" class="col-sm-3 col-form-label">Precio</label>
+                            <div class="col-sm-9">
+                                <input name="preiocnnn" [(ngModel)]="compra.precion" type="number" class="form-control"
+                                    placeholder="preiocnnn" required>
+                                <div *ngIf="!compra.precion" class="text-danger">Falta completar este campo</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
                             <label for="estado" class="col-sm-3 col-form-label">Estado</label>
                             <div class="col-sm-9">
                                 <select name="estado" [(ngModel)]="compra.estado" class="form-control" required>

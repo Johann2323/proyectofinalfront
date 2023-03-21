@@ -14,20 +14,13 @@ import { Compra } from '../compra';
 export class FormCompraComponent implements OnInit {
 
   public compra: Compra = new Compra();
-  /*    public compras: Compra[] = []; */
+
 
   constructor(private compraService: CompraService,
     private router: Router) { }
 
   ngOnInit(): void {
   }
-
-/*   public buy = {
-    fecha_compra: '',
-    estado: '',
-    total: '',
-    metodo_pago: ''
-  } */
 
   crearCompras(): void {
     this.compraService.crear(this.compra).subscribe(
@@ -40,7 +33,7 @@ export class FormCompraComponent implements OnInit {
             compra: this.compra
           }
         };
-        this.router.navigate(['/app-pagos'], navigationExtras);
+        this.router.navigate(['/app-compra'], navigationExtras);
       },
       (error) => {
         console.log(error);
@@ -48,16 +41,6 @@ export class FormCompraComponent implements OnInit {
     );
   }
 
-  /*   obtenerCompras(): void {
-      this.compraService.getCompra().subscribe(
-        (data) => {
-          this.compras = data;
-        },
-        (error) => {
-          console.error(error);
-        }
-      )
-    } */
 
   limpiarFormulario(): void {
     this.compra = new Compra();

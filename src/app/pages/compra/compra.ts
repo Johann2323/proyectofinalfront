@@ -4,4 +4,8 @@ export class Compra {
     estado?: string;
     total?: number;
     metodo_pago?: string;
+    direccion?: string;
+    nombre?: string;
+    titulo?: string;
+    precion?: number;
 }

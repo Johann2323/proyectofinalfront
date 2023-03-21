@@ -9,64 +9,63 @@
     <div class="row">
       <div class="col-md-6">
         <p><strong>Número de factura:</strong> {{details.numeroFactura}}</p>
-        <p><strong>Nombre del libro:</strong> </p>
+        <p><strong>Titulo del libro:</strong> <ng-container >
+          {{ libro2.titulo}}
+        </ng-container></p>
       </div>
       <div class="col-md-6 text-right">
-        <p><strong>Fecha:</strong> 
+        <p><strong>Fecha:</strong>
           <ng-container *ngFor="let openn of comprass">
-            {{ openn.fecha_compra }}
+            {{ openn.fecha_compra | date:'shortDate'  }}
           </ng-container>
-        <p><strong>Método de pago:</strong> 
+          
+        <p><strong>Método de pago:</strong>
           <ng-container *ngFor="let openn of comprass">
             {{ openn.metodo_pago }}
           </ng-container>
         </p>
       </div>
-      
-    <hr>
-    <div class="row">
-      <div class="col-md-6">
-        <p><strong>Nombre del cliente:</strong> {{client.nombre}}</p>
-        <p><strong>Dirección del cliente:</strong> {{client.direccion}}</p>
-        <p><strong>Email del cliente:</strong> {{client.email}}</p>
-      </div>
-      <div class="col-md-6 text-right">
-        <p><strong>Cantidad:</strong> {{compra.total}}</p>
-        <p><strong>Precio:</strong> {{details.precioCliente}}</p>
-        <p><strong>Total:</strong> {{details.pxq}}</p>
-      </div>
-    </div>
-    <hr>
 
-    <div class="row">
-      <div class="col-md-12">
-        <table class="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nombre del cliente</th>
-              <th scope="col">Dirección del cliente</th>
-              <th scope="col">Email del cliente</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let detailsItem">
-              <th scope="row">{{detailsItem.Nombre}}</th>
-              <td>{{detailsItem.direccion}}</td>
-              <td>{{detailsItem.email}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Nombre del cliente:</strong><ng-container >
+            {{ user2.nombre }}
+          </ng-container></p>
+          <p><strong>Dirección del cliente:</strong> {{user2.direccion }}</p>
+          
+        </div>
+        <div class="col-md-6 text-right">
+          <p><strong>Email del cliente:</strong> {{user2.email}}</p>
 
-  <hr>
-  <div class="row justify-content-end">
-    <div class="col-md-3">
-      <div class="btn-group btn-group-sm" role="group">
-        <button class="btn btn-outline-danger" routerLink="/app-form-compra"><i class="far fa-edit"></i> New</button>
-        <button class="btn btn-outline-danger" >Download PDF</button>
+        </div>
+      </div>
+      <hr>
+
+      <div class="row">
+        <div class="col-md-12">
+          <h4>Valor a Cancelar</h4>
+          <ul>
+            <p><strong>Cantidad:</strong><ng-container *ngFor="let openned2 of comprass">
+              {{ openned2.total }}
+            </ng-container></p>
+<!--             <p><strong>Precio:</strong><ng-container *ngFor="let openn of libross">
+              {{ openn.precio }}
+            </ng-container></p> -->
+<!--             <p><strong>Total:</strong> {{totales | currency }}</p> -->
+          </ul>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row justify-content-end">
+        <div class="col-md-3">
+          <div class="btn-group btn-group-sm" role="group">
+            <button class="btn btn-outline-danger" routerLink="/app-form-compra"><i class="far fa-edit"></i>
+              New</button>
+            <button class="btn btn-outline-danger">Download PDF</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 </div>
