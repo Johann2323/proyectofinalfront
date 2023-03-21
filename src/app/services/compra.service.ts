@@ -14,6 +14,7 @@ export class CompraService {
 
   private url: string = "http://localhost:8080/api/compra/crearcompra";
   private url2: string = "http://localhost:8080/api/compra/getcompra";
+  private url3: string = "http://localhost:8080/api/compra/buscarxnombre/";
 
   constructor(private http: HttpClient, private loginService: LoginService) { }
 
@@ -29,6 +30,12 @@ export class CompraService {
     return this.http.get<Compra[]>(this.url2,{ headers }); 
   }
 
+  public buscar(nombre: String): Observable<Compra[]> {
+    const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
+    const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
+    console.log(this.url3+nombre)
+    return this.http.get<Compra[]>(this.url3+ nombre, { headers: httpHeaders });
+  }
 
   /* private url:string="http://localhost:8080/api/compra";
    constructor(private http:HttpClient) { }
