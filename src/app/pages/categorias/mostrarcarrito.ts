@@ -10,9 +10,11 @@ export class mostrarcarrito {
 
   setmostrarcarrito(nuevoValor: any) {
     this.mostrarcarrito = nuevoValor;
+    window.location.reload
   }
 
   getMostrarcarrito() {
     return this.mostrarcarrito;
+    
   }
 }

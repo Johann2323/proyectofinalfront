@@ -3,8 +3,8 @@ export class pedido{
     id_usuario?: number;
     nombre?: string;
     id_libro?: number;
-    titulo?:string;
-    precion?: number;
+    titulo?:Array<String>;
+    precion?: Array<number>;
     fecha_pedido?: Date;
     estado?:string;
     total?:number

@@ -11,6 +11,7 @@ import { pedido } from '../cat-accion/pedido';
 import { usuarios } from '../registro-admin/usuario';
 import { LoginService } from 'src/app/services/login.service';
 import { PedidoService } from '../carrito-compras/pedido.service';
+import { arrayLibros } from '../carrito-compras/array-libros';
 
 @Component({
   selector: 'app-cat-terror',
@@ -27,7 +28,8 @@ export class CatTerrorComponent implements OnInit {
   public user2: usuarios = new usuarios();
   public Pedidos: pedido = new pedido();
   CurrentDate?: Date;
-  constructor(private libroservice: RegistroLibroService, private router: Router, private mostarr: mostrarcarrito, private loginService: LoginService, private pedidoService: PedidoService) { }
+  constructor(private libroservice: RegistroLibroService, private router: Router, private mostarr: mostrarcarrito, 
+    private loginService: LoginService, private pedidoService: PedidoService,private arraylibros: arrayLibros) { }
 
   ngOnInit(): void {
     this.libroservice.getLibros().subscribe(
@@ -41,29 +43,10 @@ export class CatTerrorComponent implements OnInit {
   carrito(id?: number, titulo?: string, precio?: number) {
     this.mostarr.setmostrarcarrito(true);
 
-    const usuarioo = this.loginService.getUser()
-    console.log(usuarioo)
-    this.user2 = usuarioo
-    this.Pedidos.id_libro = id;
-    this.Pedidos.id_usuario = usuarioo.id;
-    this.Pedidos.estado = "Pendiente";
-    this.Pedidos.fecha_pedido = this.CurrentDate;
-
-    this.Pedidos.nombre = usuarioo.nombre;
-    this.Pedidos.titulo = titulo
-    this.Pedidos.precion = precio
-
-
-    this.pedidoService.crearPedido(this.Pedidos).subscribe(
-      (data) => {
-        console.log(data);
-        Swal.fire('Añadido al carrio', 'Revise su Carrito de Compras', 'success');
-
-      }, (error) => {
-        Swal.fire('Error al Añdir al Carrito', 'Ha Ocurrido Algo', 'error');
-
-      }
-    )
+    this.arraylibros.setArray(id)
+    console.log(arrayLibros.length);
+    console.log(id);
+    this.mostarr.setmostrarcarrito(true);
 
   }
   onKeydownEvent(event: KeyboardEvent, titulo: String): void {
