@@ -6,8 +6,8 @@
                 <h1 class="card-title" style="text-align: center;" >Pedidos</h1><br>
                 <form class="d-flex buscar" role="search">
                   <input class="form-control me-1" type="search" placeholder="Buscar" aria-label="Buscar"
-                    style=" border-color: #F1D9CE; height:40px;" />
-                  <button class="btn" type="submit">
+                  (keyup)="onKeydownEvent($event, buscarpedido.value)" #buscarpedido style=" border-color: #F1D9CE; height:40px;" />
+                  <button class="btn" type="submit" (click)="buscarLibxNomb(buscarpedido.value)">
                     <img src="https://cdn-icons-png.flaticon.com/512/3686/3686871.png" style="width: 40px; height: 40px;">
                   </button>
                 </form>
@@ -22,8 +22,18 @@
                       <th scope="col">Total</th>
                     </tr>
                   </thead>
-                  <tbody *ngFor="let pedido of pedido1">
-                    <tr>
+                  <tbody *ngIf=bus>
+                    <tr *ngFor="let pedido of pedido1">
+                      <td>{{ pedido.id }}</td>
+                      <td>{{pedido.nombre}}</td>
+                      <td>{{pedido.id_libro}}/td>
+                      <td>{{pedido.fecha_pedido}}</td>
+                      <td>{{pedido.estado}}</td>
+                      <td>{{pedido.total}}</td>
+                    </tr>
+                  </tbody>
+                  <tbody *ngIf=buscarval>
+                    <tr *ngFor="let pedido of pedidobus">
                       <td>{{ pedido.id }}</td>
                       <td>{{pedido.nombre}}</td>
                       <td>{{pedido.id_libro}}/td>
@@ -49,9 +59,9 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/3686/3686871.png" style="width: 40px; height: 40px;">
                   </button>
                 </form>
-                <table  class="table" style="background-color: #F1D9CE; border-color: black; border: 2px;" >
+                <table  class="table" style=" border-color: black; border: 2px;" >
                   <thead>
-                    <tr>
+                    <tr style="background-color: #F1D9CE;">
                       <th scope="col">#</th>
                       <th scope="col">Cliente</th>
                       <th scope="col">Articulos</th>
@@ -61,15 +71,26 @@
                       <th scope="col">Total</th>
                     </tr>
                   </thead>
-                  <tbody *ngFor="let compra of compra1" >
-                    <tr>
+                  <tbody >
+                    <tr *ngFor="let compra of compra1">
                       <td>{{compra.id}}</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td>{{compra.nombre}}</td>
+                      <td>{{compra.titulo}}</td>
+                      <td>{{compra.fecha_compra}}</td>
+                      <td>{{compra.metodo_pago}}</td>
+                      <td>{{compra.estado}}</td>
+                      <td>{{compra.total}}</td>
+                    </tr>
+                  </tbody>
+                  <tbody >
+                    <tr *ngFor="let compra of compra1" >
+                      <td>{{compra.id}}</td>
+                      <td>{{compra.nombre}}</td>
+                      <td>{{compra.titulo}}</td>
+                      <td>{{compra.fecha_compra}}</td>
+                      <td>{{compra.metodo_pago}}</td>
+                      <td>{{compra.estado}}</td>
+                      <td>{{compra.total}}</td>
                     </tr>
                   </tbody>
                 </table>

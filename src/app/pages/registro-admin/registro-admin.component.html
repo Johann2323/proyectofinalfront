@@ -67,7 +67,7 @@
               <form class="d-flex buscar" role="search">
                 <input class="form-control me-1" type="search" placeholder="Buscar" aria-label="Buscar"
                 (keyup)="onKeydownEvent($event, buscarvendedor.value)" #buscarvendedor style=" border-color: #F1D9CE; height:40px;" />
-                <button class="btn"  type="submit">
+                <button class="btn" (click)="buscarLibxNomb(buscarvendedor.value)" type="submit">
                   <img src="https://cdn-icons-png.flaticon.com/512/3686/3686871.png" style="width: 40px; height: 40px;">
                 </button>
               </form>
@@ -88,6 +88,15 @@
                     <td>{{usuario.direccion}}</td>
                     <td>{{usuario.telefono}}</td>
                     <td>{{usuario.email}}</td>
+                  </tr>
+                </tbody>
+                <tbody *ngIf=buscarval>
+                  <tr *ngFor="let usuarior of usuariosbus">
+                    <td>{{usuarior.id}}</td>
+                    <td>{{usuarior.nombre+" "+ usuarior.apellido}}</td>
+                    <td>{{usuarior.direccion}}</td>
+                    <td>{{usuarior.telefono}}</td>
+                    <td>{{usuarior.email}}</td>
                   </tr>
                 </tbody>
               </table>

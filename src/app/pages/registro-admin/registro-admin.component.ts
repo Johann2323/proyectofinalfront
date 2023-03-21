@@ -26,7 +26,6 @@ export class RegistroAdminComponent implements OnInit {
     this.userService.obtenerusuario().subscribe(
       usuario2 => this.usuarios1 = usuario2
     );
-    console.log(this.usuarios1)
   }
   public user: usuarios = {
     username: '',
@@ -71,6 +70,13 @@ export class RegistroAdminComponent implements OnInit {
     }
   }
 
-  
-  
+  buscarLibxNomb(nombre: String) {
+    this.bus = false;
+    this.userService.buscar(nombre).subscribe(
+      data => {
+        this.usuariosbus = data;
+        this.buscarval=true;
+      },
+    )
+  }
 }

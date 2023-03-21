@@ -30,7 +30,11 @@ export class UserService {
   }
 
 
-  
+  public buscar(nombre: String): Observable<usuarios[]> {
+    const token = this.loginService.getToken(); // Obtiene el token del servicio AuthService
+    const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); // Agrega el token al encabezado
+    return this.httpClient.get<usuarios[]>(`${baserUrl}/usuarios/buscarxnombreu/` + nombre, { headers: httpHeaders });
+  }
 
 
   public obtenervendedores(): Observable<usuarios[]> {
