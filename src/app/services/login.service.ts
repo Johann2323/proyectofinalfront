@@ -40,6 +40,9 @@ export class LoginService {
   public logout(){
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('roladm');
+    localStorage.removeItem('rol');
+
     return true;
   }
 
@@ -50,6 +53,22 @@ export class LoginService {
 
   public setUser(user:any){
     localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  public setvaradm(valor:boolean){
+    localStorage.setItem('roladm', valor+"");
+  }
+
+  public setvar(valor:boolean){
+    localStorage.setItem('rol', valor+"");
+  }
+
+  public getvaradm(){
+    return JSON.parse(localStorage.getItem('roladm')+"");
+  }
+
+  public getvar(){
+    return JSON.parse(localStorage.getItem('rol')+"");
   }
 
   public getUser(){

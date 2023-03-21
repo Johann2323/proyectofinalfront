@@ -4,10 +4,11 @@ import { RegistroLibroService } from './registro-libro.service';
 import { Router } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'; // Importar FormsModule
+import { FormsModule, NgForm } from '@angular/forms'; // Importar FormsModule
 import Swal from 'sweetalert2';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-registro-libro',
@@ -36,7 +37,7 @@ export class RegistroLibroComponent implements OnInit {
   fileContentimg: any;
   fechaFormateada?: string;
   
-  constructor(private sanitizer: DomSanitizer,private libroservice: RegistroLibroService, private router: Router,private http: HttpClient) { }
+  constructor(private sanitizer: DomSanitizer,private libroservice: RegistroLibroService, private router: Router,private http: HttpClient,private loginService:LoginService) { }
   @ViewChild('id') id!: ElementRef;
   @ViewChild('titulo') titulo!: ElementRef;
   @ViewChild('autor') autor!: ElementRef;
@@ -48,6 +49,7 @@ export class RegistroLibroComponent implements OnInit {
   @ViewChild('fecha') fecha!: ElementRef;
   @ViewChild('pdf') pdf!: ElementRef;
   @ViewChild('imagen') imagen!: ElementRef;
+  
 
   
   ngOnInit(): void {
@@ -56,7 +58,11 @@ export class RegistroLibroComponent implements OnInit {
       
       //libro => this.libros=libro
     );
+    
 
+    
+      
+    
     
     this.buscarval = false;
     this.bus = true;
@@ -67,10 +73,20 @@ export class RegistroLibroComponent implements OnInit {
   onKeydownEvent(event: KeyboardEvent, titulo: String): void {
     if (titulo == "") {
       this.ngOnInit();
+    }else{
+      this.bus = false;
+      this.libroservice.buscarLibro(titulo).subscribe(
+      librs => {
+        this.libs = librs;
+        console.log(this.libs.length);
+        this.buscarval = true;
+      }
+
+    )
     }
   }
 
-  crearlibros(libro:any){
+  crearlibros(libro:any,formulario:NgForm){
 
     if(this.validarpdf==true && this.validarimg==true){
       this.libros.titulo=this.titulo.nativeElement.value
@@ -95,14 +111,14 @@ export class RegistroLibroComponent implements OnInit {
       this.libroservice.create(this.libros).subscribe(
         (data) => {
           console.log(data);
-          window.location.reload();
+          this.ngOnInit();
           Swal.fire('Libro guardado', 'Libro registrado con exito en el sistema', 'success');
-          
+          window.location.reload();
         }, (error) => {
           console.log(error);
           Swal.fire('Error', 'Libro no registrado', 'error');
         }
-      )
+      );
     }else{
       Swal.fire('Agregue los archivos necesario', 'No se pudo completar el registro', 'warning');
     }
@@ -112,22 +128,36 @@ export class RegistroLibroComponent implements OnInit {
   }
 
 
-editarlibro(id:string, libro:any){
+editarlibro(id:string, libro:any,formulario:NgForm){
 
   const numString = id;
   const num = parseInt(numString); // num es igual a 42
 
 console.log(num)
-  this.libroservice.update(num,this.libros).subscribe(
-    (data) => {
-      console.log(data);
-      window.location.reload();
-      Swal.fire('Libro actualizado', 'Libro actualizado con exito en el sistema',"success");
-    }, (error) => {
-      console.log(error);
-      Swal.fire('Error', 'Libro no actualizado', 'error');
-    }
-  )
+Swal.fire({
+  title: '¿Estás seguro?',
+  text: '¿Quieres confirmar los cambios en el libro?',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Sí, actualizar'
+}).then((result) => {
+  if (result.isConfirmed) {
+    this.libroservice.update(num,this.libros).subscribe(
+      (data) => {
+        console.log(data);
+        this.ngOnInit();
+        Swal.fire('Libro actualizado', 'Libro actualizado con éxito en el sistema', 'success');
+        window.location.reload();
+      }, (error) => {
+        console.log(error);
+        Swal.fire('Error', 'Libro no actualizado', 'error');
+      }
+    );
+  }
+});
+
 }
 
   validaredit:boolean=false
@@ -189,7 +219,7 @@ console.log(num)
         this.libroservice.eliminarlibro(num).subscribe(
           () => {
             Swal.fire('Libro eliminado', '', 'success');
-            window.location.reload();
+            this.ngOnInit();
           },
           (error) => {
             Swal.fire('Error al eliminar el libro', error.message, 'error');

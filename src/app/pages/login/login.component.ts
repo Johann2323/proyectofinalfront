@@ -5,13 +5,16 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
 
+
+export class LoginComponent implements OnInit {
+  public static rols:string
   loginData = {
     "username" : '',
     "password" : '',
@@ -62,9 +65,14 @@ export class LoginComponent implements OnInit {
           console.log(user);
 
           if(this.loginService.getUserRole() == 'ADMIN'){
+            this.loginService.setvaradm(true)
+
+            this.router.navigateByUrl('app-navbar', { skipLocationChange: true }).then(() => {
+              this.router.navigate(['']);
+            });
             //dashboard admin
             //window.location.href = '/admin';
-            this.router.navigate(['/']);
+            this.router.navigate(['app-categorias']);
             Swal.fire({
               title: "¡Bienvenido de nuevo! "+this.loginData.username,
               text: "Has iniciado sesión correctamente.",
@@ -80,10 +88,14 @@ export class LoginComponent implements OnInit {
             this.loginService.loginStatusSubjec.next(true);
           }
           else if(this.loginService.getUserRole() == 'NORMAL'){
-            
+            this.loginService.setvar(true)
+
+            this.router.navigateByUrl('app-navbar', { skipLocationChange: true }).then(() => {
+              this.router.navigate(['']);
+            });
             //user dashboard
             //window.location.href = '/user-dashboard';
-            this.router.navigate(['/']);
+            this.router.navigate(['app-categorias']);
             Swal.fire({
               title: "¡Bienvenido de nuevo! "+this.loginData.username,
               text: "Has iniciado sesión correctamente.",

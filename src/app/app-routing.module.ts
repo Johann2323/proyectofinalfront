@@ -15,8 +15,14 @@ import { RegistroAdminComponent } from './pages/registro-admin/registro-admin.co
 import { CarritoComprasComponent } from './pages/carrito-compras/carrito-compras.component';
 import { CompraComponent } from './pages/compra/compra.component';
 import { FormCompraComponent } from './pages/compra/form-compra/form-compra.component';
+import { CategoriasComponent } from './pages/categorias/categorias.component';
 
 const routes: Routes = [
+  {
+    path : 'app-categorias',
+    component : CategoriasComponent,
+    pathMatch : 'full',
+  },
   {
     path : '',
     component : HomeComponent,
@@ -64,7 +70,7 @@ const routes: Routes = [
     path : 'app-registro-admin',
     component : RegistroAdminComponent,
     pathMatch : 'full',
-    canActivate:[AdminGuard]
+    
    
   },
   

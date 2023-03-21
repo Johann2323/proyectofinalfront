@@ -5,9 +5,9 @@
 
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <a class="navbar-brand" href="#" style="color: #030100"> <img
+      <a class="navbar-brand" routerLink=""  style="color: #030100"> <img
           src="https://cdn-icons-png.flaticon.com/512/2802/2802838.png" alt="" width="60" height="60"
-          routerLink="/app-home"> ReadMore</a>
+          routerLink=""> ReadMore</a>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#" routerLink="/app-eventos">Eventos</a>
@@ -23,34 +23,25 @@
       
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" *ngIf="isLoggedIn" aria-current="page" routerLink="/app-registro-libro">Registro Libro</a>
+          <a class="nav-link active" *ngIf="isLoggedIn && roladm" aria-current="page" routerLink="/app-registro-libro">Registro Libro</a>
         </li>
       </ul>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" *ngIf=admin aria-current="page" href="#" routerLink="/app-registro-admin">Registro Vendedor</a>
-        </li>
-      </ul>
-
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" *ngIf=admin  aria-current="page" href="#" routerLink="/app-pagos">Pagos</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" *ngIf=admin  aria-current="page" href="#" routerLink="/app-form-compra">Compra</a>
+          <a class="nav-link active" *ngIf="roladm && roladm" aria-current="page" href="#" routerLink="/app-registro-admin">Registro Vendedor</a>
         </li>
       </ul>
 
+      
+
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active"   aria-current="page" href="#" routerLink="/app-vista-pedido-compra">Pedido/Compra</a>
+          <a class="nav-link active" *ngIf="isLoggedIn && roladm"  aria-current="page" href="#" routerLink="/app-vista-pedido-compra">Pedido/Compra</a>
         </li>
       </ul>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active"   aria-current="page" href="#" routerLink="/app-vista-clientes">Clientes</a>
+          <a class="nav-link active" *ngIf="isLoggedIn && roladm"  aria-current="page" href="#" routerLink="/app-vista-clientes">Clientes</a>
         </li>
       </ul>
 
@@ -62,7 +53,7 @@
       <a *ngIf="!isLoggedIn" [routerLink]="'/signup'" class="boton btn " style="margin-right: 30px; background-color:#BE6134; font-size: small; color: white;" >
         Registrar
       </a>
-      <a *ngIf=isLoggedIn (click)="logout()" class="boton btn " style="margin-right: 50px; background-color:#BE6134; font-size: small; color: white;">
+      <a *ngIf=isLoggedIn (click)="logout()" href="#" class="boton btn " style="margin-right: 50px; background-color:#BE6134; font-size: small; color: white;">
         Cerrar sesión
       </a>&nbsp; &nbsp; &nbsp; &nbsp; 
       <button *ngIf="isLoggedIn && user" class="boton btn " style="margin-right: 10px; background-color:#BE6134; font-size: small; color: white;">

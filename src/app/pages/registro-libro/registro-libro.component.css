@@ -1,5 +1,6 @@
 .contenedor{
     margin: 20px;
+    
 }
 .boton{
     border-radius: 5px;
@@ -42,4 +43,11 @@
   }
   .h4{
     font-size: small;
+  }
+
+  .card{
+    max-height: 80vh;
+
+    
+    overflow: auto;
   }
