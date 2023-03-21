@@ -8,4 +8,5 @@ export class Compra {
     nombre?: string;
     titulo?: string;
     precion?: number;
+    id_pedido?: number;
 }

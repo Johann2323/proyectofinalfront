@@ -6,9 +6,9 @@
                     <h5 class="card-title text-center">Registro de Compra</h5>
                     <div class="d-flex justify-content-center align-items-center">
                         <img src="https://cdn-icons-png.flaticon.com/512/1151/1151250.png" width="100" height="100"
-                            class="text-center">
+                            class="text-center" >
                     </div>
-                    <form (submit)="crearCompras()" #compraForm="ngForm">
+                    <form *ngFor="let libro of libros1" (submit)=" crearCompras(libro.id, libro.titulo, libro.precio)" #compraForm="ngForm">
                         <div class="form-group row">
                             <label for="fecha" class="col-sm-3 col-form-label">Fecha</label>
                             <div class="col-sm-9">
@@ -19,17 +19,19 @@
                         </div>
                         <div class="form-group row">
                             <label for="direcion" class="col-sm-3 col-form-label">Nombre </label>
-                            <div class="col-sm-9">
-                                <input name="direccion" [(ngModel)]="compra.nombre" type="text" class="form-control"
-                                    placeholder="Escriba su nombre" required>
+                            <div class="col-sm-9"  >
+                                <ng-container >
+                                    {{ user2.nombre}}
+                                  </ng-container>
                                 <div *ngIf="!compra.nombre" class="text-danger">Falta completar este campo</div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="direcion" class="col-sm-3 col-form-label">Titulo del libro</label>
                             <div class="col-sm-9">
-                                <input name="direccion" [(ngModel)]="compra.titulo" type="text" class="form-control"
-                                    placeholder="titulo-libro" required>
+                                <ng-container >
+                                    {{ libro.titulo }}
+                                  </ng-container>
                                 <div *ngIf="!compra.titulo" class="text-danger">Falta completar este campo</div>
                             </div>
                         </div>
@@ -44,8 +46,9 @@
                         <div class="form-group row">
                             <label for="direcion" class="col-sm-3 col-form-label">Precio</label>
                             <div class="col-sm-9">
-                                <input name="preiocnnn" [(ngModel)]="compra.precion" type="number" class="form-control"
-                                    placeholder="preiocnnn" required>
+                                <ng-container >
+                                    {{ libro.precio }}
+                                  </ng-container>
                                 <div *ngIf="!compra.precion" class="text-danger">Falta completar este campo</div>
                             </div>
                         </div>
