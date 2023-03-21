@@ -15,8 +15,8 @@
                 <th scope="col">Costo</th>
               </tr>
             </thead>
-            <tbody>
-              <tr *ngFor="let pedido of pedido1">
+            <tbody *ngFor="let pedido of pedido1">
+              <tr *ngIf="pedido.nombre==user.nombre">
                 <td>{{pedido.id}}</td>
                 <td>{{pedido.titulo}}</td>
                 <td>{{pedido.precion}}</td>
