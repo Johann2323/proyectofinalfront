@@ -25,8 +25,8 @@ export class CompraService {
 
   getCompra():Observable<Compra[]> { 
     const token = this.loginService.getToken(); 
-    const httpHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token); 
-    return this.http.get<Compra[]>(this.url2,{ headers: httpHeaders }); 
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<Compra[]>(this.url2,{ headers }); 
   }
 
 
