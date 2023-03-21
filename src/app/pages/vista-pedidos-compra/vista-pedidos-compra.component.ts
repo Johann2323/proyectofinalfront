@@ -14,6 +14,9 @@ export class VistaPedidosCompraComponent {
   public Compras:Compra=new Compra();
   pedido1: pedido[] = [];
   pedidobus: pedido[] = [];
+
+  pedidobus2: Compra[] = [];
+
   compra1:Compra[]=[];
   bus: boolean = true;
   buscarval: boolean = false;
@@ -39,6 +42,18 @@ export class VistaPedidosCompraComponent {
     this.pedidoService.buscar(nombre).subscribe(
       data => {console.log(data)
         this.pedidobus = data;
+        console.log(data)
+        this.buscarval=true;
+      },
+    )
+  }
+
+
+  buscarComxNomb(nombre: String) {
+    this.bus = false;
+    this.compraService.buscar(nombre).subscribe(
+      data => {console.log(data)
+        this.pedidobus2 = data;
         console.log(data)
         this.buscarval=true;
       },
