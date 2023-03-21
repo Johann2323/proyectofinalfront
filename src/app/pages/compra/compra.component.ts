@@ -9,9 +9,9 @@ import { formatDate } from '@angular/common';
 import { RegistroLibroService } from '../registro-libro/registro-libro.service';
 import { libros } from '../registro-libro/libros';
 import { usuarios } from '../registro-admin/usuario';
+import { pedido } from '../cat-accion/pedido';
 
-//import jsPDF from 'jspdf';
-//import html2canvas from 'html2canvas';
+
 
 @Component({
   selector: 'app-compra',
@@ -21,11 +21,15 @@ import { usuarios } from '../registro-admin/usuario';
 export class CompraComponent implements OnInit {
 
   comprass: Compra[] = [];
-  libross: libros[] = [];
+  libros1: libros[] = [];
+  CurrentDate?: Date;
+
 
 
   public libro2: libros = new libros();
   public user2: usuarios = new usuarios();
+  public compra2: Compra = new Compra();
+  public Pedidos: pedido = new pedido();
 
   public details = {
     numeroFactura: this.generador(),
@@ -40,48 +44,27 @@ export class CompraComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.libroService.getLibros().subscribe(
+      c => this.libros1 = c
+    );
 
-       this.compraService.getCompra().subscribe(
-      c => this.comprass = c
-    )  
-       this.libroService.getLibros().subscribe(
-      c => this.libross = c
-    );   
- 
+    this.compraService.getCompra().subscribe((response) => {
+      this.comprass = response
+    }
+    )
 
-       const usuarioo = this.loginService.getUser()
-        console.log(usuarioo) 
-        this.user2=usuarioo;
+    const usuarioo = this.loginService.getUser()
+    console.log(usuarioo)
+    this.user2 = usuarioo; 
+
+    this.CurrentDate = new Date();
+    this.compra2.fecha_compra = this.CurrentDate
 
 
-    //this.downloadPDF();
+
+
   }
 
-
-  /* public downloadPDF() {
-    // Extraemos el
-    const DATA:any = document.getElementById('htmlData');
-    const doc = new jsPDF('p', 'pt', 'a4');
-    const options = {
-      background: 'white',
-      scale: 3
-    };
-    html2canvas(DATA, options).then((canvas) => {
-
-      const img = canvas.toDataURL('image/PNG');
-
-      // Add image Canvas to PDF
-      const bufferX = 15;
-      const bufferY = 15;
-      const imgProps = (doc as any).getImageProperties(img);
-      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
-      return doc;
-    }).then((docResult) => {
-      docResult.save(`${new Date().toISOString()}_factura.pdf`);
-    });
-  } */
 
 
   generador(): string {
@@ -103,20 +86,35 @@ export class CompraComponent implements OnInit {
     } */
 
 
- 
-/*   public totales: number = 0;
-
-  calculossss(): void {
-    for (let i = 0; i < this.comprass.length; i++) {
-      const libro = this.libross[i];
-      const compraa = this.comprass[i];
-      if (libro && compraa && typeof compraa.total === 'number' && typeof libro.precio === 'number') {
-        this.totales += compraa.total * libro.precio;
+    calcularTotal(): number {
+      let total = 0;
+      for (let i = 0; i < this.comprass.length; i++) {
+        const libroo = this.libros1[i];
+        const compraa = this.comprass[i];
+        if (libroo && compraa && typeof compraa.total === 'number' && typeof libroo.precio === 'number') {
+          total += compraa.total * libroo.precio;
+          console.log(total)
+        }
       }
+      return total;
     }
-  } 
- */
-
+    
+    imprimir() {
+      Swal.fire({
+        title: "¡Generando la impresión!",
+        text: "Espera un momento...",
+        confirmButtonText: this.user2.nombre,
+        confirmButtonColor: "#3085d6",
+        timer: 2000,
+        timerProgressBar: true,
+        toast: true,
+        position: "center",
+      });
+      setTimeout(() => {
+        window.print(); 
+      }, 2000);
+    }
+    
 
 
 }

@@ -5,6 +5,8 @@ import { CompraService } from 'src/app/services/compra.service';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
+import { PedidoService } from '../../carrito-compras/pedido.service';
+import { pedido } from '../../cat-accion/pedido';
 import { usuarios } from '../../registro-admin/usuario';
 import { libros } from '../../registro-libro/libros';
 import { RegistroLibroService } from '../../registro-libro/registro-libro.service';
@@ -21,34 +23,69 @@ export class FormCompraComponent implements OnInit {
   public compra: Compra = new Compra();
   public libros: libros = new libros();
   public user2: usuarios = new usuarios();
+  public pedidos: pedido = new pedido();
+
+  user: usuarios = new usuarios();
 
   libros1: libros[] = [];
+  users1: usuarios[] = [];
+  pedido1: pedido[] = [];
+  compra1: Compra[] = [];
   CurrentDate?: Date;
+  ccc?: any;
 
 
   constructor(private compraService: CompraService,
-    private loginService:LoginService,
     private libroservice: RegistroLibroService,
+    private loginService: LoginService,
     private router: Router) { }
 
   ngOnInit(): void {
     this.libroservice.getLibros().subscribe(
       libro => this.libros1 = libro
     );
+    this.CurrentDate = new Date();
+
+/*     this.loginService.getCurrentUser().subscribe((response) => {
+      this.user = response
+      console.log(response)
+    }) */
+
+    const usuarioo = this.loginService.getUser()
+    console.log(usuarioo) 
+    this.user2=usuarioo  
+
+    this.compraService.getCompra().subscribe(
+      (c) => {
+        for (let aaa of c) {
+          if (aaa.nombre==this.user.nombre){
+            this.compra1 = c
+          }
+
+        }
+
+      })
+
+
+
+    this.traee()
 
   }
 
-  crearCompras(id?:number, titulo?:string, precio?:number): void {
-    const usuarioo = this.loginService.getUser()
-    console.log(usuarioo) 
-    this.user2=usuarioo
-  this.compra.estado = "Pendiente";
+  crearCompras(id_pedido?: number, titulo?: string, precio?: number): void {
 
-  this.compra.nombre = usuarioo.nombre;
-  this.compra.titulo = titulo
-  this.compra.precion= precio
-    
-    
+    this.compra.estado = "En proceso";
+    this.compra.titulo = titulo
+    this.compra.precion = precio
+    this.compra.id_pedido = id_pedido
+    this.compra.fecha_compra = this.CurrentDate
+   this.compra.nombre=this.user.nombre 
+
+
+    /*   const usuarioo = this.loginService.getCurrentUser()
+      console.log(usuarioo)  */
+
+
     this.compraService.crear(this.compra).subscribe(
       (response) => {
         console.log(response);
@@ -70,6 +107,17 @@ export class FormCompraComponent implements OnInit {
 
   limpiarFormulario(): void {
     this.compra = new Compra();
+  }
+
+
+
+  traee() {
+
+
+    this.ccc = this.compra1.filter((elemento: any) => elemento = this.compra.titulo)
+    console.log("hhhhhh" + this.ccc)
+    return this.ccc
+
   }
 
 

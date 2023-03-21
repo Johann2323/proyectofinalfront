@@ -7,16 +7,18 @@
   <div id="htmlData">
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6" >
         <p><strong>Número de factura:</strong> {{details.numeroFactura}}</p>
-        <p><strong>Titulo del libro:</strong> <ng-container >
-          {{ libro2.titulo}}
-        </ng-container></p>
+        <p><strong>Titulo del libro:</strong>  <ng-container *ngFor="let openn of libros1">
+          <ng-container *ngIf="openn.titulo==compra2.titulo">
+            {{ openn.titulo}}
+        </ng-container></ng-container>
       </div>
+
       <div class="col-md-6 text-right">
         <p><strong>Fecha:</strong>
-          <ng-container *ngFor="let openn of comprass">
-            {{ openn.fecha_compra | date:'shortDate'  }}
+          <ng-container >
+            {{ compra2.fecha_compra | date:'shortDate'  }}
           </ng-container>
           
         <p><strong>Método de pago:</strong>
@@ -45,15 +47,26 @@
       <div class="row">
         <div class="col-md-12">
           <h4>Valor a Cancelar</h4>
-          <ul>
-            <p><strong>Cantidad:</strong><ng-container *ngFor="let openned2 of comprass">
-              {{ openned2.total }}
-            </ng-container></p>
-<!--             <p><strong>Precio:</strong><ng-container *ngFor="let openn of libross">
-              {{ openn.precio }}
-            </ng-container></p> -->
-<!--             <p><strong>Total:</strong> {{totales | currency }}</p> -->
-          </ul>
+          <div>
+            <ul>
+              <li><strong>Cantidad:</strong>
+                <ng-container *ngFor="let compra of comprass">
+                  {{ compra.total }}
+                </ng-container>
+              </li>
+              <li><strong>Precio:</strong>
+                <ng-container *ngFor="let libro of libros1">
+                  {{ libro.precio | currency}}
+                </ng-container>
+              </li>
+              <li><strong>Total:</strong>
+                <ng-container *ngIf="comprass.length > 0 && libros1.length > 0">
+                  {{ calcularTotal() | currency}}
+                </ng-container>
+              </li>
+            </ul>
+          </div>
+          
         </div>
       </div>
 
@@ -63,7 +76,8 @@
           <div class="btn-group btn-group-sm" role="group">
             <button class="btn btn-outline-danger" routerLink="/app-form-compra"><i class="far fa-edit"></i>
               New</button>
-            <button class="btn btn-outline-danger">Download PDF</button>
+              <button class="btn btn-outline-danger" (click)="imprimir()">Imprimir</button>
+
           </div>
         </div>
       </div>
