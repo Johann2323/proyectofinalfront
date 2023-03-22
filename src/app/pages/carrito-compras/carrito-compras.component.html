@@ -15,17 +15,17 @@
                 <th scope="col">Costo</th>
               </tr>
             </thead>
-            <tbody *ngFor="let pedido of pedido1">
-              <tr *ngIf="pedido.nombre==user.nombre">
-                <td>{{pedido.id}}</td>
-                <td>{{pedido.titulo}}</td>
-                <td>{{pedido.precion}}</td>
+            <tbody *ngFor="let titulo of titulos">
+              <tr *ngFor="let precio of precios">
+                <td>{{titulo}}</td>
+                <td>{{precio}}</td>
               </tr>
 
             
             </tbody>
           </table>
           Total:
+          <label>{{total}}</label>
           <br><br>
           <button type="submit" (click)="guardar()" class="boton btn " [routerLink]="'/app-form-compra'" style="background-color:#BE6134; font-size: small;">Realizar
             Pago</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

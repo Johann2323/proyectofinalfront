@@ -29,8 +29,9 @@ export class CarritoComprasComponent implements OnInit {
   public Pedidos: pedido = new pedido();
   CurrentDate?: Date;
 
-  titulos: any= []
-  precios: any =[]
+  titulos: any= [];
+  total:number=0;
+  precios: any =[];
 
 
   constructor(private mostrarr: mostrarcarrito, private peidoService: PedidoService, private libroService: RegistroLibroService, private loginService: LoginService, private arraylibros: arrayLibros,private pedidoService: PedidoService) { }
@@ -51,7 +52,9 @@ export class CarritoComprasComponent implements OnInit {
             if(libros.id = array){
               this.titulos.push(libros.titulo)
               this.precios.push(libros.precio)
-              
+              if (libros.precio != null) {
+                this.total = libros.precio + this.total;
+              }
             }
           }
           
