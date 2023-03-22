@@ -45,19 +45,19 @@ const routes: Routes = [
     path : 'app-pagos',
     component : PagosComponent,
     pathMatch : 'full',
-    canActivate:[AdminGuard]
+    canActivate:[NormalGuard]
   },
   {
     path : 'app-compra',
     component : CompraComponent,
     pathMatch : 'full',
-    canActivate:[AdminGuard]
+    canActivate:[NormalGuard]
   },
   {
     path : 'app-form-compra',
     component : FormCompraComponent,
     pathMatch : 'full',
-    canActivate:[AdminGuard]
+    canActivate:[NormalGuard]
   },
 
   {
@@ -70,6 +70,7 @@ const routes: Routes = [
     path : 'app-registro-admin',
     component : RegistroAdminComponent,
     pathMatch : 'full',
+    canActivate:[AdminGuard]
     
    
   },
