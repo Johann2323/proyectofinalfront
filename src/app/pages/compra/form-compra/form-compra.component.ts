@@ -72,11 +72,15 @@ export class FormCompraComponent implements OnInit {
 
   }
 
-  crearCompras(id_pedido?: number, titulo?: string, precio?: number): void {
+  crearCompras(id_pedido?: number, titulo?: string,  precio?: number): void {
 
     this.compra.estado = "En proceso";
-    this.compra.titulo = titulo
-    this.compra.precion = precio
+    if(this.compra.titulo!=null && titulo!=null){
+     this.compra.titulo.push(titulo); 
+    }
+    if(precio!=null){
+      this.compra.precion?.push(precio) 
+    }
     this.compra.id_pedido = id_pedido
     this.compra.fecha_compra = this.CurrentDate
    this.compra.nombre=this.user.nombre 

@@ -6,7 +6,7 @@ export class Compra {
     metodo_pago?: string;
     direccion?: string;
     nombre?: string;
-    titulo?: string;
-    precion?: number;
+    titulo?: Array<String>;
+    precion?: Array<number>;
     id_pedido?: number;
 }
